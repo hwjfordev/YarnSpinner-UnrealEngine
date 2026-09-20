@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "3.2.0-Alpha",
+	"Version": 9,
+	"VersionName": "3.2.8-alpha9",
 	"FriendlyName": "Yarn Spinner",
 	"Description": "Yarn Spinner for Unreal Engine.",
 	"Category": "Dialogue",
