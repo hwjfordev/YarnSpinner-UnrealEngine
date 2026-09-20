@@ -28,6 +28,7 @@
 #include "YarnYSLSGenerator.h"
 #include "YarnEditorPaths.h"
 #include "YarnBrandedDetails.h"
+#include "YarnNodeReferenceCustomization.h"
 #include "PropertyEditorModule.h"
 #include "EditorReimportHandler.h"
 #include "Editor.h"
@@ -118,6 +119,13 @@ void FYarnSpinnerEditorModule::RegisterDetailsCustomizations()
 		PropertyModule.RegisterCustomClassLayout(ClassName, FOnGetDetailCustomizationInstance::CreateStatic(&FYarnBrandedDetails::MakeInstance));
 		CustomizedClassNames.Add(ClassName);
 	}
+
+	PropertyModule.RegisterCustomPropertyTypeLayout(
+		FName("YarnNodeReference"),
+		FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FYarnNodeReferenceCustomization::MakeInstance));
+	CustomizedPropertyTypeNames.Add(FName("YarnNodeReference"));
+
+	PropertyModule.NotifyCustomizationModuleChanged();
 }
 
 void FYarnSpinnerEditorModule::UnregisterDetailsCustomizations()
@@ -129,8 +137,13 @@ void FYarnSpinnerEditorModule::UnregisterDetailsCustomizations()
 		{
 			PropertyModule.UnregisterCustomClassLayout(ClassName);
 		}
+		for (const FName PropertyTypeName : CustomizedPropertyTypeNames)
+		{
+			PropertyModule.UnregisterCustomPropertyTypeLayout(PropertyTypeName);
+		}
 	}
 	CustomizedClassNames.Empty();
+	CustomizedPropertyTypeNames.Empty();
 }
 
 void FYarnSpinnerEditorModule::UnregisterStyleSet()

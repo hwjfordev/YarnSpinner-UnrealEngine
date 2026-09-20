@@ -197,6 +197,9 @@ protected:
 
 	FString MakeLocalizedClipAssetPath(const FString& LineID) const;
 
+	/** The asset provider the dialogue runner is using, if there is one. */
+	UObject* GetAssetProviderObject() const;
+
 	/** The current line being presented (stored for logging/debugging). */
 	FYarnLocalizedLine CurrentLine;
 

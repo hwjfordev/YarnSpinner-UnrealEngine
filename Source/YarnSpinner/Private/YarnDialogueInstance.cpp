@@ -781,7 +781,7 @@ bool UYarnDialogueInstance::TryDispatchToBlueprintHandler(const FYarnCommand& Co
 
 		// Look for a function with the same name as the command
 		UFunction* Function = HandlerObject->FindFunction(FName(*Command.CommandName));
-		if (!Function)
+		if (!Function || !Function->GetName().Equals(Command.CommandName, ESearchCase::CaseSensitive))
 		{
 			continue;
 		}
@@ -845,7 +845,8 @@ bool UYarnDialogueInstance::TryDispatchToWorldActor(const FYarnCommand& Command,
 	TArray<FString> Args(Command.Parameters);
 	Args.RemoveAt(0);
 
-	if (UFunction* Function = TargetActor->FindFunction(FunctionFName))
+	if (UFunction* Function = TargetActor->FindFunction(FunctionFName);
+		Function && Function->GetName().Equals(Command.CommandName, ESearchCase::CaseSensitive))
 	{
 		if (bVerboseLogging)
 		{
@@ -862,7 +863,8 @@ bool UYarnDialogueInstance::TryDispatchToWorldActor(const FYarnCommand& Command,
 		{
 			continue;
 		}
-		if (UFunction* Function = Component->FindFunction(FunctionFName))
+		if (UFunction* Function = Component->FindFunction(FunctionFName);
+			Function && Function->GetName().Equals(Command.CommandName, ESearchCase::CaseSensitive))
 		{
 			if (bVerboseLogging)
 			{

@@ -279,7 +279,7 @@ void FYarnVirtualMachine::SetSelectedOption(int32 OptionIndex)
 		}
 
 		// Push destination and true flag; the compiled code uses PeekAndJump to read the destination
-		int32 Destination = CurrentOptions[OptionIndex].OptionID;
+		int32 Destination = CurrentOptions[OptionIndex].DestinationInstruction;
 		Push(FYarnValue(static_cast<float>(Destination)));
 		Push(FYarnValue(true));
 		UE_LOG(LogYarnSpinner, Verbose, TEXT("Yarn VM: Option %d selected, pushed destination %d and true"), OptionIndex, Destination);
@@ -452,7 +452,8 @@ bool FYarnVirtualMachine::RunInstruction(const FYarnInstruction& Instruction)
 					InstructionPointer, *Instruction.StringOperand, Instruction.IntOperand);
 			}
 
-			Option.OptionID = Instruction.IntOperand; // store destination in OptionID
+			Option.OptionID = CurrentOptions.Num();
+			Option.DestinationInstruction = Instruction.IntOperand;
 			CurrentOptions.Add(Option);
 		}
 		return true;

@@ -86,6 +86,7 @@ private:
 	TSharedPtr<FSlateStyleSet> StyleSet;
 
 	TArray<FName> CustomizedClassNames;
+	TArray<FName> CustomizedPropertyTypeNames;
 
 	/** Map of watched directory path -> watcher delegate handle */
 	TMap<FString, FDelegateHandle> WatchedDirectories;

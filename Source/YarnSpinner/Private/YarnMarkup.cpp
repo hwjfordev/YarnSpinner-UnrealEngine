@@ -17,6 +17,7 @@
 
 #include "YarnMarkup.h"
 #include "YarnSpinnerModule.h"
+#include "YarnUnicodeNormalization.h"
 #include "Internationalization/Regex.h"
 #include "Internationalization/Culture.h"
 #include "Internationalization/Internationalization.h"
@@ -556,7 +557,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 	// goes through the full markup pipeline (matching C# LineParser)
 	// ========================================================================
 
-	FString Input = Text;
+	FString Input = FYarnUnicodeNormalization::NFC(Text);
 
 	if (bAddImplicitCharacterAttribute)
 	{

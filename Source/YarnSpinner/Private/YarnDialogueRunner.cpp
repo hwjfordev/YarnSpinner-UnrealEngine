@@ -96,6 +96,15 @@ void UYarnDialogueRunner::BeginPlay()
 	{
 		LineProvider = NewObject<UYarnBuiltinLineProvider>(this);
 	}
+	if (!AssetProvider.GetInterface())
+	{
+		UYarnProjectAssetProvider* DefaultAssetProvider = NewObject<UYarnProjectAssetProvider>(this);
+		AssetProvider.SetObject(DefaultAssetProvider);
+		AssetProvider.SetInterface(Cast<IYarnAssetProvider>(DefaultAssetProvider));
+	}
+
+	RefreshAssetProviderContext();
+
 	if (LineProvider && YarnProject)
 	{
 		LineProvider->SetYarnProject(YarnProject);
@@ -145,6 +154,8 @@ void UYarnDialogueRunner::SetYarnProject(UYarnProject* NewYarnProject)
 	{
 		LineProvider->SetYarnProject(YarnProject);
 	}
+
+	RefreshAssetProviderContext();
 
 	// Reset presentation state
 	if (Instance)
@@ -357,4 +368,37 @@ bool UYarnDialogueRunner::TryGetSmartVariableAsString(const FString& Name, FStri
 bool UYarnDialogueRunner::TryGetSmartVariable(const FString& Name, FYarnValue& OutResult)
 {
 	return Instance ? Instance->TryGetSmartVariable(Name, OutResult) : false;
+}
+
+void UYarnDialogueRunner::RefreshAssetProviderContext()
+{
+	UYarnProjectAssetProvider* ProjectAssetProvider = Cast<UYarnProjectAssetProvider>(AssetProvider.GetObject());
+	if (!ProjectAssetProvider)
+	{
+		return;
+	}
+
+	FString Locale;
+	if (UYarnBuiltinLineProvider* BuiltinProvider = Cast<UYarnBuiltinLineProvider>(LineProvider))
+	{
+		Locale = BuiltinProvider->GetLocaleCode();
+	}
+
+	ProjectAssetProvider->SetAssetContext(YarnProject, Locale);
+}
+
+void UYarnDialogueRunner::StartDialogueFromReference(const FYarnNodeReference& NodeReference)
+{
+	if (!NodeReference.IsValid())
+	{
+		UE_LOG(LogYarnSpinner, Error, TEXT("StartDialogueFromReference: the reference does not name a node in its project"));
+		return;
+	}
+
+	if (NodeReference.YarnProject != YarnProject)
+	{
+		SetYarnProject(NodeReference.YarnProject);
+	}
+
+	StartDialogue(NodeReference.NodeName);
 }

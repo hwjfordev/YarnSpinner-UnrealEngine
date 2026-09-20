@@ -292,12 +292,17 @@ TArray<FString> FYarnNode::GetLineIDs() const
 
 const FYarnNode* FYarnProgram::GetNode(const FString& NodeName) const
 {
-	return Nodes.Find(NodeName);
+	const FYarnNode* Node = Nodes.Find(NodeName);
+	if (Node && !Node->Name.Equals(NodeName, ESearchCase::CaseSensitive))
+	{
+		return nullptr;
+	}
+	return Node;
 }
 
 bool FYarnProgram::HasNode(const FString& NodeName) const
 {
-	return Nodes.Contains(NodeName);
+	return GetNode(NodeName) != nullptr;
 }
 
 bool FYarnProgram::TryGetInitialValue(const FString& VariableName, FYarnValue& OutValue) const

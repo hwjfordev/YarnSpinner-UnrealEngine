@@ -206,10 +206,11 @@ bool FYarnProtobufParser::ParseProgram(FYarnProgram& OutProgram, FString& OutErr
 
 					if (const FYarnNode* Existing = OutProgram.Nodes.Find(NodeName))
 					{
-						if (Existing->Name != NodeName)
+						if (!Existing->Name.Equals(NodeName, ESearchCase::CaseSensitive))
 						{
-							UE_LOG(LogYarnSpinner, Error, TEXT("yarn project importer: node names '%s' and '%s' differ only by case - this Unreal Engine map keys nodes case-insensitively, so one will silently overwrite the other. Rename one of them."),
+							OutError = FString::Printf(TEXT("node names '%s' and '%s' differ only by case - this Unreal Engine map keys nodes case-insensitively, so one would silently overwrite the other. Rename one of them."),
 								*Existing->Name, *NodeName);
+							return false;
 						}
 					}
 
@@ -260,9 +261,9 @@ bool FYarnProtobufParser::ParseProgram(FYarnProgram& OutProgram, FString& OutErr
 						}
 					}
 
-					if (ExistingKey && *ExistingKey != VariableName)
+					if (ExistingKey && !ExistingKey->Equals(VariableName, ESearchCase::CaseSensitive))
 					{
-						UE_LOG(LogYarnSpinner, Error, TEXT("yarn project importer: initial values '%s' and '%s' differ only by case - this Unreal Engine map keys variables case-insensitively, so one will silently overwrite the other. Rename one of them."),
+						UE_LOG(LogYarnSpinner, Warning, TEXT("yarn project importer: variables '%s' and '%s' differ only by case - Unreal keys variables case-insensitively, so they share one value here and two separate values in the other Yarn Spinner runtimes. Rename one of them if they are meant to be different."),
 							**ExistingKey, *VariableName);
 					}
 

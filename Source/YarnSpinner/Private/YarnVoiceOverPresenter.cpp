@@ -257,103 +257,38 @@ void UYarnVoiceOverPresenter::RunLine_Implementation(const FYarnLocalizedLine& L
 
 USoundBase* UYarnVoiceOverPresenter::GetVoiceOverClip_Implementation(const FYarnLocalizedLine& Line)
 {
-	// this is the default implementation which looks for an "audio:" metadata
-	// tag on the line. override this in your subclass or blueprint to provide
-	// your own audio lookup logic - for example, looking up clips in a data
-	// table based on line id, or constructing asset paths from a naming
-	// convention.
-
-	// check if the line has a metadata tag specifying the audio asset path.
-	// metadata tags come from yarn script comments like: #audio:/Game/Audio/Line01
-	for (const FString& Tag : Line.Metadata)
+	// the asset provider finds clips either via a line's metadata
+	// tag, teh localisation's assets folder, or whatever a game supplies in
+	// its place... override this in your subclass or blueprint or whatever 
+	// to do something else for voice over!
+	if (UObject* ProviderObject = GetAssetProviderObject())
 	{
-		if (Tag.StartsWith(TEXT("audio:")))
-		{
-			// extract the path after "audio:" prefix
-			FString AssetPath = Tag.Mid(6);  // 6 = length of "audio:"
-
-			// use StaticLoadObject to synchronously load the asset. this is
-			// fine for audio clips which are typically small. if you have
-			// performance concerns, consider async loading in your override.
-			return Cast<USoundBase>(StaticLoadObject(USoundBase::StaticClass(), nullptr, *AssetPath));
-		}
+		return Cast<USoundBase>(
+			IYarnAssetProvider::Execute_GetAssetForLine(ProviderObject, Line, USoundBase::StaticClass()));
 	}
 
-	{
-		const FString EffectiveLineID = Line.ShadowSourceLineID.IsEmpty() ? Line.RawLine.LineID : Line.ShadowSourceLineID;
-		if (USoundBase* LocalizedClip = ResolveClipFromLocalizedAssetsPath(EffectiveLineID))
-		{
-			return LocalizedClip;
-		}
-	}
-
-	// if this line shadows another line, use the source line's audio - a
-	// shadow line uses the source line's text and assets, matching the
-	// unity runtime's behaviour.
-	if (!Line.ShadowSourceLineID.IsEmpty())
-	{
-		UYarnDialogueRunner* Runner = GetDialogueRunner();
-		if (Runner && Runner->YarnProject)
-		{
-			if (const FString* SourceMetadata = Runner->YarnProject->LineMetadata.Find(Line.ShadowSourceLineID))
-			{
-				TArray<FString> SourceTags;
-				SourceMetadata->ParseIntoArray(SourceTags, TEXT(" "));
-				for (const FString& Tag : SourceTags)
-				{
-					if (Tag.StartsWith(TEXT("audio:")))
-					{
-						FString AssetPath = Tag.Mid(6);
-						return Cast<USoundBase>(StaticLoadObject(USoundBase::StaticClass(), nullptr, *AssetPath));
-					}
-				}
-			}
-		}
-	}
-
-	// no audio tag found - return nullptr to indicate no audio for this line
 	return nullptr;
+}
+
+UObject* UYarnVoiceOverPresenter::GetAssetProviderObject() const
+{
+	UYarnDialogueRunner* Runner = GetDialogueRunner();
+	if (!Runner)
+	{
+		return nullptr;
+	}
+
+	return Runner->AssetProvider.GetObject();
 }
 
 FString UYarnVoiceOverPresenter::MakeLocalizedClipAssetPath(const FString& LineID) const
 {
-	UYarnDialogueRunner* Runner = GetDialogueRunner();
-	if (!Runner || !Runner->YarnProject)
+	if (UYarnProjectAssetProvider* Provider = Cast<UYarnProjectAssetProvider>(GetAssetProviderObject()))
 	{
-		return FString();
+		return Provider->MakeLocalisedAssetPath(LineID);
 	}
 
-	FString Locale;
-	if (UYarnBuiltinLineProvider* Provider = Cast<UYarnBuiltinLineProvider>(Runner->LineProvider))
-	{
-		Locale = Provider->GetLocaleCode();
-	}
-	if (Locale.IsEmpty())
-	{
-		Locale = Runner->YarnProject->BaseLanguage;
-	}
-
-	const FYarnLocalization* Localization = Runner->YarnProject->Localizations.Find(Locale);
-	if (!Localization && Locale.Len() > 2)
-	{
-		Localization = Runner->YarnProject->Localizations.Find(Locale.Left(2));
-	}
-	if (!Localization || Localization->AssetsPath.IsEmpty())
-	{
-		return FString();
-	}
-
-	if (!Localization->AssetsPath.StartsWith(TEXT("/")))
-	{
-		UE_LOG(LogYarnSpinner, Verbose, TEXT("VoiceOverPresenter: assets path '%s' is not a content path (expected e.g. /Game/Audio/VO) - skipping localized asset lookup"),
-			*Localization->AssetsPath);
-		return FString();
-	}
-
-	FString AssetName = LineID;
-	AssetName.RemoveFromStart(TEXT("line:"));
-
-	return FString::Printf(TEXT("%s/%s"), *Localization->AssetsPath, *AssetName);
+	return FString();
 }
 
 USoundBase* UYarnVoiceOverPresenter::ResolveClipFromLocalizedAssetsPath(const FString& LineID)
@@ -369,46 +304,11 @@ USoundBase* UYarnVoiceOverPresenter::ResolveClipFromLocalizedAssetsPath(const FS
 
 void UYarnVoiceOverPresenter::OnPrepareForLines_Implementation(const TArray<FString>& LineIDs)
 {
-	// preload the audio assets for the upcoming lines so playback starts
-	// without a synchronous load hitch when each line runs.
-	UYarnDialogueRunner* Runner = GetDialogueRunner();
-	if (!Runner || !Runner->YarnProject)
+	// preload the audio for the upcoming lines so playback starts without a
+	// synchronous load hitch when each line runs.
+	if (UObject* ProviderObject = GetAssetProviderObject())
 	{
-		return;
-	}
-
-	TArray<FSoftObjectPath> AssetsToLoad;
-	for (const FString& LineID : LineIDs)
-	{
-		const FString* MetadataStr = Runner->YarnProject->LineMetadata.Find(LineID);
-		if (!MetadataStr)
-		{
-			continue;
-		}
-
-		TArray<FString> Tags;
-		MetadataStr->ParseIntoArray(Tags, TEXT(" "));
-		for (const FString& Tag : Tags)
-		{
-			if (Tag.StartsWith(TEXT("audio:")))
-			{
-				AssetsToLoad.Add(FSoftObjectPath(Tag.Mid(6)));
-			}
-		}
-	}
-
-	for (const FString& LineID : LineIDs)
-	{
-		const FString LocalizedPath = MakeLocalizedClipAssetPath(LineID);
-		if (!LocalizedPath.IsEmpty())
-		{
-			AssetsToLoad.Add(FSoftObjectPath(LocalizedPath));
-		}
-	}
-
-	if (AssetsToLoad.Num() > 0)
-	{
-		PreloadHandle = UAssetManager::GetStreamableManager().RequestAsyncLoad(AssetsToLoad);
+		IYarnAssetProvider::Execute_PrepareAssetsForLines(ProviderObject, LineIDs, USoundBase::StaticClass());
 	}
 }
 

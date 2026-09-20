@@ -365,6 +365,10 @@ struct YARNSPINNER_API FYarnOption
 	UPROPERTY(BlueprintReadOnly, Category = "Yarn Spinner")
 	bool bIsAvailable = true;
 
+	/** The instruction the virtual machine jumps to when this option is selected. */
+	UPROPERTY()
+	int32 DestinationInstruction = INDEX_NONE;
+
 	FYarnOption() = default;
 
 	/** Check if this is a valid option (has a valid ID) */
