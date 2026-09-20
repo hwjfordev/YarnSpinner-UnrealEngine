@@ -40,6 +40,49 @@
 
 class UYarnDialogueRunner;
 
+ /**
+ * Key comparison for maps of Yarn names! Unreal's string maps ignore case,
+ * but Yarn scripts are case sensitive, so names that differ only by case have
+ * to stay apart here the way they do in the other runtimes. Unsure if this is
+ * the best way to do this, but this is what we're doing for now.
+ */
+template <typename ValueType>
+struct TYarnCaseSensitiveNameKeyFuncs : BaseKeyFuncs<TPair<FString, ValueType>, FString, false>
+{
+	static FORCEINLINE const FString& GetSetKey(const TPair<FString, ValueType>& Element)
+	{
+		return Element.Key;
+	}
+
+	static FORCEINLINE bool Matches(const FString& A, const FString& B)
+	{
+		return A.Equals(B, ESearchCase::CaseSensitive);
+	}
+
+	static FORCEINLINE uint32 GetKeyHash(const FString& Key)
+	{
+		return FCrc::StrCrc32(*Key);
+	}
+};
+
+struct FYarnCaseSensitiveNameSetKeyFuncs : BaseKeyFuncs<FString, FString, false>
+{
+	static FORCEINLINE const FString& GetSetKey(const FString& Element)
+	{
+		return Element;
+	}
+
+	static FORCEINLINE bool Matches(const FString& A, const FString& B)
+	{
+		return A.Equals(B, ESearchCase::CaseSensitive);
+	}
+
+	static FORCEINLINE uint32 GetKeyHash(const FString& Key)
+	{
+		return FCrc::StrCrc32(*Key);
+	}
+};
+
 // ============================================================================
 
 UCLASS()
@@ -119,19 +162,21 @@ private:
 	FYarnVirtualMachine VirtualMachine;
 
 	/** Registered command handlers (command name -> handler function) */
-	TMap<FString, TFunction<void(const TArray<FString>&)>> CommandHandlers;
+	TMap<FString, TFunction<void(const TArray<FString>&)>, FDefaultSetAllocator,
+		TYarnCaseSensitiveNameKeyFuncs<TFunction<void(const TArray<FString>&)>>> CommandHandlers;
 
 	/** Command names registered via AddBlockingCommandHandler. */
-	TSet<FString> BlockingCommandNames;
+	TSet<FString, FYarnCaseSensitiveNameSetKeyFuncs> BlockingCommandNames;
 
 	/** True while a blocking command is holding the dialogue. */
 	bool bBlockingCommandPending = false;
 
 	/** Registered yarn functions (function name -> implementation) */
-	TMap<FString, TFunction<FYarnValue(const TArray<FYarnValue>&)>> Functions;
+	TMap<FString, TFunction<FYarnValue(const TArray<FYarnValue>&)>, FDefaultSetAllocator,
+		TYarnCaseSensitiveNameKeyFuncs<TFunction<FYarnValue(const TArray<FYarnValue>&)>>> Functions;
 
 	/** Parameter counts for registered functions */
-	TMap<FString, int32> FunctionParameterCounts;
+	TMap<FString, int32, FDefaultSetAllocator, TYarnCaseSensitiveNameKeyFuncs<int32>> FunctionParameterCounts;
 
 	int32 ActiveLinePresenterCount = 0;
 

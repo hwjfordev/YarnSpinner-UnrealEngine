@@ -55,6 +55,10 @@
 // Saliency helps pick the best content when multiple options are available.
 #include "YarnSaliency.h"
 
+#include "YarnAssetProvider.h"
+
+#include "YarnNodeReference.h"
+
 // IYarnSmartVariableEvaluator - for evaluating compiled smart variable nodes.
 // The dialogue runner implements this interface.
 #include "YarnSmartVariables.h"
@@ -169,6 +173,28 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Yarn Spinner")
 	TObjectPtr<UYarnLineProvider> LineProvider;
+
+	 /**
+	 * Finds teh assets that go with each line like voice over clips etc..
+	 * If not set, a default provider is created that reads asset paths from
+	 * line metadata and from the localisation's assets folder.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Yarn Spinner")
+	TScriptInterface<IYarnAssetProvider> AssetProvider;
+
+	 /**
+	 * Point the asset provider at the current project and locale. Called when
+	 * dialogue starts; you gotta call it after changing the locale yourself.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Yarn Spinner")
+	void RefreshAssetProviderContext();
+
+	 /**
+	 * Start dialogue at a node picked in the editor. Switches to the
+	 * reference's project first if it is not the one already loaded..
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Yarn Spinner")
+	void StartDialogueFromReference(const FYarnNodeReference& NodeReference);
 
 	 /**
 	 * Objects containing command handler functions for Blueprint-based commands.
