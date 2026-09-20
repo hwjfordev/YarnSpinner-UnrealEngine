@@ -50,6 +50,7 @@ public class YarnSpinner : ModuleRules
 				"Slate",
 				"SlateCore",
 				"InputCore",
+				"ICU",
 			}
 		);
 

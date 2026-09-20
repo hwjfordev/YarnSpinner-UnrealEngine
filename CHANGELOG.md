@@ -1,10 +1,10 @@
 # Yarn Spinner for Unreal Engine — Changelog
 
-## Alpha 5 (in progress)
+## Alpha 9 (in progress)
 
-Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by community feedback on the component workflow, amongst other things. Thanks to everyone who provided feedback, bug reports, and more! We really appreicate you. The dialogue runner's Blueprint and C++ surface should largely be unchanged, so if you only used the runner, presenters, and events, your project may just work as before. Action markup handlers changed a fair bit and a handful of script behaviours got stricter, so please read the migration list below as you work through things..
+Alpha 9 reworks a few parts of how the plugin fits into Unreal, guided by community feedback on the component workflow, amongst other things. Thanks to everyone who provided feedback, bug reports, and more! We REALLY really appreicate you. The dialogue runner's Blueprint and C++ surface should largely be unchanged, so if you only used the runner, presenters, and events, your project may just work as before. Action markup handlers changed a fair bit and a handful of script behaviours got stricter, so please read the migration list below as you work through things..
 
-### Migrating from Alpha 4
+### Migrating from an earlier Alpha
 
 1. **Everyone**: recompile! thHe dialogue runner now delegates its
    internals to a dialogue instance object. Nothing changes in how you
@@ -43,6 +43,44 @@ Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by commun
    (`1E+09`), matching the other Yarn Spinner runtimes...
 8. **If your project has node names differing only by case** ("Start"
    and "start"): imports now fail with an error naming both. Rename one, please!
+9. **If you pass an option's `Option ID` back to Select Option**: that
+   property now holds thee option's place in the list it arrived in (0, 1,
+   2, ...) rather than an internal jump target. Blueprints that used Option ID 
+   straight into Select Option will work fine still, and now pick the right option lol; 
+   anything that did something with Option ID should use the line ID instead now.
+10. **If you call Start Dialogue or Has Node with a differently-cased
+   node name** ("start" for a node called "Start"): these are case
+   sensitive now, matching every other Yarn Spinner runtime, so they no
+   longer find the node. Use the name as it appears in the script.
+
+### Added
+
+- **Line Advancer** component. You should use with dialogue runner to turn
+  a key press into the right request: hurry the line that's still typing
+  itself out, move on to the next one when it's finished, hurry up options,
+  or cancel the dialogue outright, etc. One control can do both hurry-up and
+  advance (the usual "tap to skip, tap again to continue" thing), or you can
+  give them seperate keys. Set Input Mode to Manual and call the Request
+  functions yourself if your game already has an input setup... There
+  is also an option to cancel the dialogue after the player mashes advance a
+  few times on one line.
+- **Widget effects**: Fade Widget (plus Fade In and Fade Out), Punch Scale,
+  and Shake, as Blueprint async nodes that finish early when a cancellation
+  token is cancelled or the player hurries the line along. Handy for the
+  small flourishes etc. There are immediate versions too (Set Widget Opacity, Scale,
+  Offset).
+- **Asset providers**. `Get Asset For Line` and `Prepare Assets For Lines`
+  are now behind an interface, so finding the voice over clip (or portrait,
+  or anything else keyed to a line) can be swapped out without touching teh
+  presenters. The dialogue runner makes a default one if you don't supply
+  yours: it reads an asset path from a line's metadata tag (`#audio:...`),
+  then falls back to the localisation's assets folder for the current locale,
+  and follows shadow lines to their source. The voice over presenter asks the
+  provider first and keeps its old behaviour as a fallback.
+- **Yarn Node Reference**, a project-plus-node pair that shows a dropdown of
+  the project's nodes in the Details panel instead of a text box. Feed one to 
+  the new Start Dialogue From Reference. Matches teh node picker the Godot and 
+  Unity versions have.
 
 ### Fixed
 
@@ -73,11 +111,18 @@ Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by commun
   `0`; `bool("yes")` halts rather than returning `false`; `format()` halts
   if the format string references an argument that wasn't supplied, rather
   than leaving the literal `{1}` placeholder in the displayed text.
-- Node names and initial variable values that differ only by case are now
-  rejected at import with a clear error naming both. Unreal keys these maps
-  case-insensitively, so a project with both a "Start" and a "start" node
-  previously imported without complaint and one silently overwrote the
-  other.
+- Node names that differ only by case are now rejected at import with a
+  clear error naming both... Unreal keys these maps case-insensitively, so a
+  project with both a "Start" and a "start" node previously imported
+  without issue. Whoops. Sorry!
+- The voice over presenter now gets its clips from the asset provider rather
+  than its own copy of the same lookup rules, so there is one place where
+  "which asset belongs to this line" is decided. Behaviour is is unchanged:
+  the default provider does metadata tag, then localised assets folder, then
+  shadow source.
+- Variables that differ only by case now log a warning at import. They
+  share a single value in Unreal and have two separate values in the other
+  runtimes, so if you're comign from Unity/Godot, be aware..
 - The last-line preview shown alongside options now actually truncates at
   the `[lastline]` marker. The marker and the constant that named it were
   already there, but nothing read them! Hah.
@@ -87,6 +132,27 @@ Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by commun
 - Modulo by zero now stops the dialogue with a clear error instead of
   returning 0. Note the divisor converts to an integer first, so a
   divisor smaller than 1 also counts as zero.
+- An option's `Option ID` is now the option's position in the set it came
+  in with, matching the Unity C# runtime, instead of the instruction the VM
+  jumps to when that option is chosen! Selecting an option by its ID could
+  pick a different option entirely, or fail with an "invalid option index"
+  error, depending on what the compiler happened to emit. The jump target
+  moved to its own field that the VM reads.
+- Dialogue text is normalised (NFC) before markup is parsed. Text that arrives 
+  with decomposed accents produced markup positionand comparisions that coudl be odd. 
+  So, e.g. an "é" written as "e" plus a combining accent is now the same single 
+  character everywhere. The normalisation comes from UE's own internationalisation
+  data, same as `[plural]` and `[ordinal]` do.. Projects that build with ICU disabled 
+  get their text through unnormalised rather than failing...
+- Command and function names are now matched case sensitively, as they are in
+  Yarn Spinner for Unity. Unreal's string maps ignore case, so registering
+  handlers for `move` and `Move` used to leave you with whichever came last,
+  and `<<Move>>` would happily run a handler registered as `move`. This covers 
+  handlers registered in C++ and Blueprint, functions, and and commands dispatched
+  to an actor or component by name...
+- Looking a node up by name is case sensitive, so `Has Node` and `Start
+  Dialogue` no longer accept "start" for a node called "Start". Unreal's
+  string maps ignore case, sorry.
 
 ### Changed
 
@@ -94,9 +160,9 @@ Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by commun
   lightweight objects you add directly to a presenter's Action Markup
   Handlers array in the Details panel, where each entry unfolds inline
   for editing. This removes the add-a-component-and-wire-it-up dance for
-  every object that reacts to dialogue markup. Blueprint handlers
+  every object that reacts to dialogue markup! Blueprint handlers
   subclass `UYarnBlueprintActionMarkupHandler` and implement its
-  `Receive...` events. See the migration list above, please.
+  `Receive...` events. See the migration list above, please!!
 - The sound effect handler's sound map uses soft references and streams
   sounds in on demand. Previously every mapped sound was hard-referenced
   and stayed loaded for the life of the component whether used or not.
@@ -123,11 +189,13 @@ Alpha 5 reworks a few parts of how the plugin fits into Unreal, guided by commun
   (for example, `0.00001` prints as `1E-05`, and `1000000000` prints as
   `1E+09`), everything else prints as plain decimal digits. Previously
   every number printed as plain digits regardless of size.
+- The plugin's automation tests now run test plans. Each of the 34 test case
+  drives a dialogue runner through each part of plans! Aw yeah.
 - Command tokenisation now matches the C# runtime: any whitespace character
   splits arguments, not just the space character. NOTE: this is a breaking
   change for existing scripts - `\n` and `\t` inside a quoted command
   argument are no longer converted into real newline/tab characters; only
-  `\\` and `\"` are recognised as escapes inside quotes.
+  `\\` and `\"` are recognised as escapes inside quotes...
 
 ### Documentation
 
