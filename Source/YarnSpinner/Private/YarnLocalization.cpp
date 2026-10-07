@@ -21,6 +21,7 @@
 
 // our own header - must be included first for unreal header tool
 #include "YarnLocalization.h"
+#include "Misc/EngineVersionComparison.h"
 
 // UYarnProject - we access the project to get base text, localisations, line
 // metadata, and available cultures. the line providers need this to do lookups.
@@ -298,7 +299,11 @@ void UYarnStringTableLineProvider::ImportYarnProjectToStringTable(UYarnProject* 
 	{
 		// convert yarn line id to string table key format
 		FString Key = UYarnLocalizationLibrary::LineIDToStringTableKey(Pair.Key);
-		TableRef->SetSourceString(Key, Pair.Value);
+#if UE_VERSION_NEWER_THAN(5, 7, 99)
+        TableRef->SetSourceString(Key, Pair.Value, FString());
+#else
+        TableRef->SetSourceString(Key, Pair.Value);
+#endif
 	}
 #else
 	UE_LOG(LogYarnSpinner, Error, TEXT("ImportYarnProjectToStringTable is editor-only; it does nothing in packaged builds. Import the string table in the editor and ship the asset instead."));

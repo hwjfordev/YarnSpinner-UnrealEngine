@@ -679,7 +679,7 @@ bool UYarnProjectFactory::ParseYarnProjectLocalization(const FString& ProjectPat
 		// Iterate over each culture in the localisation object
 		for (const auto& CulturePair : (*LocalisationObject)->Values)
 		{
-			FString CultureCode = CulturePair.Key;
+			FString CultureCode(*CulturePair.Key);
 			const TSharedPtr<FJsonObject>* CultureObject;
 
 			if (CulturePair.Value->TryGetObject(CultureObject))
