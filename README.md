@@ -1,3 +1,9 @@
+環境修正：編譯器需要 .NET 9，但當時電腦只有 .NET 8／10，因此在 .tools 底下的 ysc.runtimeconfig.json，於既有 runtimeOptions 物件內加入：
+"rollForward": "Major"
+保留原有欄位。只有遇到缺少 .NET 9、且要使用已安裝的 .NET 10 執行時，才需要重現這項設定。 若 ysc --help 已能正常執行，可跳過。
+
+
+
 # Yarn Spinner for Unreal Engine
 
 > [!CAUTION]
