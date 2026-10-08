@@ -1,0 +1,424 @@
+{
+	"passed": true,
+	"failures": 0,
+	"timestamp_utc": "2026-10-07T14:15:28.281Z",
+	"engine": "5.8.3-58210709+++UE5+Release-5.8",
+	"checks": [
+		{
+			"name": "Declarations available before creating any runner",
+			"passed": true
+		},
+		{
+			"name": "Untouched zero/false defaults are included",
+			"passed": true
+		},
+		{
+			"name": "Missing and false are distinguishable",
+			"passed": true
+		},
+		{
+			"name": "Only actual changes emit per-variable notification",
+			"passed": true
+		},
+		{
+			"name": "Wrong-type writes preserve state",
+			"passed": true
+		},
+		{
+			"name": "Invalid snapshot rejects atomically",
+			"passed": true
+		},
+		{
+			"name": "Conflicting declarations reject atomically",
+			"passed": true
+		},
+		{
+			"name": "Partial variable snapshots fill authored defaults",
+			"passed": true
+		},
+		{
+			"name": "New game restores defaults",
+			"passed": true
+		},
+		{
+			"name": "Runner subclass installs native shared storage",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 1: introduction and goodbye",
+			"passed": true
+		},
+		{
+			"name": "VM writes are visible through subsystem",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 2: purchase",
+			"passed": true
+		},
+		{
+			"name": "Purchase updates all shared values",
+			"passed": true
+		},
+		{
+			"name": "Active dialogue blocks reset/load/storage replacement",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 3: gameplay grants items then quest turn-in",
+			"passed": true
+		},
+		{
+			"name": "VM sees external gameplay writes and grants reward",
+			"passed": true
+		},
+		{
+			"name": "Replacing actor and attaching an existing runner preserves data",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 4: another conversation after actor recreation",
+			"passed": true
+		},
+		{
+			"name": "Conversation count persists across runners",
+			"passed": true
+		},
+		{
+			"name": "Storage Execute interface round-trips false",
+			"passed": true
+		},
+		{
+			"name": "Smart variables are evaluated without persisting computed values",
+			"passed": true
+		},
+		{
+			"name": "Expired evaluator owner prevents dangling calls",
+			"passed": true
+		},
+		{
+			"name": "Async save accepted",
+			"passed": true
+		},
+		{
+			"name": "Overlapping operations rejected",
+			"passed": true
+		},
+		{
+			"name": "Async save completes exactly once",
+			"passed": true
+		},
+		{
+			"name": "New GameInstance starts with its own independent state",
+			"passed": true
+		},
+		{
+			"name": "Async disk load into a fresh GameInstance succeeds",
+			"passed": true
+		},
+		{
+			"name": "Disk round-trip preserves snapshot, zero, false, empty string and Yarn internal state",
+			"passed": true
+		},
+		{
+			"name": "Runner created after loading does not reset loaded values",
+			"passed": true
+		},
+		{
+			"name": "Loaded state can resume at an explicit safe Yarn node",
+			"passed": true
+		},
+		{
+			"name": "Missing-slot load preserves live state",
+			"passed": true
+		},
+		{
+			"name": "Race test load accepted",
+			"passed": true
+		},
+		{
+			"name": "Stale async load cannot overwrite newer gameplay",
+			"passed": true
+		},
+		{
+			"name": "Unsupported save version preserves live state",
+			"passed": true
+		},
+		{
+			"name": "New game removes session-only and tracking keys",
+			"passed": true
+		},
+		{
+			"name": "Invalid slot paths are rejected",
+			"passed": true
+		},
+		{
+			"name": "Test cleans only its uniquely named save slot",
+			"passed": true
+		},
+		{
+			"name": "NPC DataTable defaults exist with no NPC actor",
+			"passed": true
+		},
+		{
+			"name": "Database distinguishes false/empty values from missing fields",
+			"passed": true
+		},
+		{
+			"name": "Unknown records/fields and wrong-type writes fail",
+			"passed": true
+		},
+		{
+			"name": "Runtime NPC mutation never modifies authored DataTable",
+			"passed": true
+		},
+		{
+			"name": "Explicit dynamic records are supported without duplicate creation",
+			"passed": true
+		},
+		{
+			"name": "Money helpers use the inventory currency item",
+			"passed": true
+		},
+		{
+			"name": "Known empty stacks differ from unknown item IDs",
+			"passed": true
+		},
+		{
+			"name": "Insufficient, negative, zero and overflowing money operations leave balance unchanged",
+			"passed": true
+		},
+		{
+			"name": "Equipment requires a compatible slot and owned units; equipped items cannot be removed",
+			"passed": true
+		},
+		{
+			"name": "Clothing is stored as an item ID",
+			"passed": true
+		},
+		{
+			"name": "Custom progress structs use explicit value-copy updates",
+			"passed": true
+		},
+		{
+			"name": "Shared Yarn variables are owned by the same runtime database",
+			"passed": true
+		},
+		{
+			"name": "Async database save accepts one operation only",
+			"passed": true
+		},
+		{
+			"name": "Database save completes exactly once",
+			"passed": true
+		},
+		{
+			"name": "Load immediately restores the captured database without actor/application phase",
+			"passed": true
+		},
+		{
+			"name": "Database race load accepted",
+			"passed": true
+		},
+		{
+			"name": "Concurrent NPC mutation rejects stale async load",
+			"passed": true
+		},
+		{
+			"name": "Fresh GameInstance has independent defaults",
+			"passed": true
+		},
+		{
+			"name": "Disk save loads into a fresh GameInstance before any NPC exists",
+			"passed": true
+		},
+		{
+			"name": "Disk preserves NPC, player inventory, clothing and dynamic records",
+			"passed": true
+		},
+		{
+			"name": "Custom progress struct strings, arrays and maps survive disk round trip",
+			"passed": true
+		},
+		{
+			"name": "Yarn zero, false and empty survive disk save",
+			"passed": true
+		},
+		{
+			"name": "Missing slots preserve all live database state",
+			"passed": true
+		},
+		{
+			"name": "Invalid inventory rejects the entire load without partial replacement",
+			"passed": true
+		},
+		{
+			"name": "New Game resets database, custom progress and Yarn session keys",
+			"passed": true
+		},
+		{
+			"name": "New Game does not delete disk saves",
+			"passed": true
+		},
+		{
+			"name": "Database Yarn fixture compiles/imports through official ysc",
+			"passed": true
+		},
+		{
+			"name": "Existing Connect node installs database functions/commands in a real Yarn VM",
+			"passed": true
+		},
+		{
+			"name": "VM queries and mutations use shared database including offscreen NPCs",
+			"passed": true
+		},
+		{
+			"name": "VM bool/string/equipment functions preserve their types",
+			"passed": true
+		},
+		{
+			"name": "VM inventory and affordability predicates work",
+			"passed": true
+		},
+		{
+			"name": "Invalid database operation stops dialogue without later mutation: QueryMissing",
+			"passed": true
+		},
+		{
+			"name": "Invalid database operation stops dialogue without later mutation: CommandInsufficient",
+			"passed": true
+		},
+		{
+			"name": "Invalid database operation stops dialogue without later mutation: CommandFraction",
+			"passed": true
+		},
+		{
+			"name": "Invalid database operation stops dialogue without later mutation: CommandGarbage",
+			"passed": true
+		},
+		{
+			"name": "A stale query-error callback cannot stop a new conversation",
+			"passed": true
+		},
+		{
+			"name": "Tests clean only their unique checkpoint slot",
+			"passed": true
+		},
+		{
+			"name": "Custom game progress supports an actual Blueprint Struct",
+			"passed": true
+		},
+		{
+			"name": "Blueprint custom progress writes through database SaveSlot",
+			"passed": true
+		},
+		{
+			"name": "Blueprint custom progress restores into a fresh GameInstance",
+			"passed": true
+		},
+		{
+			"name": "Blueprint progress test cleans its unique slot",
+			"passed": true
+		},
+		{
+			"name": "SaveSlot needs no checkpoint and uses configured version",
+			"passed": true
+		},
+		{
+			"name": "Configured version is physically written into disk save",
+			"passed": true
+		},
+		{
+			"name": "Old-version fixture with missing new field writes to disk",
+			"passed": true
+		},
+		{
+			"name": "Mismatched version without handler preserves live state and emits no replacement",
+			"passed": true
+		},
+		{
+			"name": "Registration rejects null and objects without the migration interface",
+			"passed": true
+		},
+		{
+			"name": "One interface handler registers successfully",
+			"passed": true
+		},
+		{
+			"name": "Handler rejection propagates its error without changing runtime state",
+			"passed": true
+		},
+		{
+			"name": "Invalid migrated output fails validation without partial publication",
+			"passed": true
+		},
+		{
+			"name": "Handler receives both versions and disk data; nested operations and handler changes are blocked",
+			"passed": true
+		},
+		{
+			"name": "Migration repairs old schema before validation and publishes one complete database",
+			"passed": true
+		},
+		{
+			"name": "Successful load does not rewrite the old slot",
+			"passed": true
+		},
+		{
+			"name": "Normal save persists migrated runtime data",
+			"passed": true
+		},
+		{
+			"name": "Same-version load bypasses migration after saving upgraded data",
+			"passed": true
+		},
+		{
+			"name": "Newer versions also reach the handler and can be rejected",
+			"passed": true
+		},
+		{
+			"name": "Migration race request is accepted",
+			"passed": true
+		},
+		{
+			"name": "Concurrent gameplay prevents migration from running on a stale load",
+			"passed": true
+		},
+		{
+			"name": "A handler that changes live data cannot overwrite those changes with its candidate",
+			"passed": true
+		},
+		{
+			"name": "Unregister removes the callback and future mismatches fail safely",
+			"passed": true
+		},
+		{
+			"name": "Invalid zero save version is rejected",
+			"passed": true
+		},
+		{
+			"name": "Invalid configured version rejects I/O",
+			"passed": true
+		},
+		{
+			"name": "New Game resets custom progress without any fixed checkpoint",
+			"passed": true
+		},
+		{
+			"name": "A real Blueprint can implement the migration interface with data and version pins",
+			"passed": true
+		},
+		{
+			"name": "Blueprint migration function executes during LoadSlot and returns the loaded data",
+			"passed": true
+		},
+		{
+			"name": "Blueprint handler receives actual version values and rejects unsupported downgrade",
+			"passed": true
+		},
+		{
+			"name": "Migration tests clean only their unique slot",
+			"passed": true
+		}
+	]
+}

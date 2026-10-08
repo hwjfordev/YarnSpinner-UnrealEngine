@@ -1,0 +1,31 @@
+{
+  "timestamp_utc": "2026-10-07T09:10:55.608688+00:00",
+  "reflected_types": [
+    "GameVariablesSubsystem",
+    "GameSaveSubsystem",
+    "GameDataBlueprintLibrary",
+    "SharedYarnVariableStorage",
+    "SharedYarnDialogueRunner",
+    "GameProgressSave",
+    "PersistentActorComponent",
+    "WorldSaveRegistrySubsystem",
+    "GameWorldStateSubsystem",
+    "GameActorSaveData",
+    "GameInventoryEntry",
+    "GameWorldSnapshot"
+  ],
+  "compiled_blueprints": [
+    "/Game/BP_GameInstance",
+    "/Game/BP_GameSave",
+    "/Game/Dialogue/BP_DialogueDirector",
+    "/Game/Dialogue/BP_YarnDialogueRunner",
+    "/Game/Dialogue/AC_YarnCustomFuncs",
+    "/Game/Dialogue/BP_MyDialoguePresenter",
+    "/Game/BP_MyThirdPersonPlayerController",
+    "/Game/HUD/WBP_DialogueHUD",
+    "/Game/HUD/WBP_YarnDebugHUD"
+  ],
+  "blueprint_save_subclass_round_trip": true,
+  "temporary_blueprint_saved_to_content": false,
+  "note": "Also inspect process exit status and compiler errors in the current log."
+}

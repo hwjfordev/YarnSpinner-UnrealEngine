@@ -56,6 +56,7 @@ public class YarnSpinnerEditor : ModuleRules
 				"Projects",
 				"InputCore",
 				"Json",
+                "YarnSpinnerGameData",
 				"JsonUtilities",
 				"ToolMenus",
 				"DirectoryWatcher",

@@ -1,0 +1,49 @@
+{
+  "timestamp_utc": "2026-10-07T14:22:58.574444+00:00",
+  "reflected_types": [
+    "GameVariablesSubsystem",
+    "GameDatabaseSubsystem",
+    "GameSaveSubsystem",
+    "GameDataBlueprintLibrary",
+    "SharedYarnVariableStorage",
+    "SharedYarnDialogueRunner",
+    "GameSaveMigrationHandler",
+    "GameProgressSave",
+    "GameDatabaseDefinition",
+    "GameDataRecord",
+    "GameDatabaseSnapshot"
+  ],
+  "removed_types": [
+    "GameCheckpoint",
+    "PersistentActorComponent",
+    "WorldSaveRegistrySubsystem",
+    "GameWorldStateSubsystem",
+    "GameSaveParticipant"
+  ],
+  "attempted_blueprints": [
+    "/Game/BP_GameInstance",
+    "/Game/BP_GameSave",
+    "/Game/Dialogue/BP_DialogueDirector",
+    "/Game/Dialogue/BP_YarnDialogueRunner",
+    "/Game/Dialogue/AC_YarnCustomFuncs",
+    "/Game/Dialogue/BP_MyDialoguePresenter",
+    "/Game/BP_MyThirdPersonPlayerController",
+    "/Game/BP_MyThirdPersonCharacter",
+    "/Game/HUD/WBP_DialogueHUD",
+    "/Game/HUD/WBP_YarnDebugHUD"
+  ],
+  "blueprint_statuses": {
+    "/Game/BP_GameInstance": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/BP_GameSave": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/Dialogue/BP_DialogueDirector": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/Dialogue/BP_YarnDialogueRunner": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/Dialogue/AC_YarnCustomFuncs": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/Dialogue/BP_MyDialoguePresenter": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/BP_MyThirdPersonPlayerController": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/BP_MyThirdPersonCharacter": "<BlueprintStatus.BS_ERROR: 2>",
+    "/Game/HUD/WBP_DialogueHUD": "<BlueprintStatus.BS_UP_TO_DATE: 3>",
+    "/Game/HUD/WBP_YarnDebugHUD": "<BlueprintStatus.BS_UP_TO_DATE: 3>"
+  },
+  "assets_saved": false,
+  "note": "Check process exit and current compiler log as well."
+}

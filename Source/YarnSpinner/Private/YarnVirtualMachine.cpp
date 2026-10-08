@@ -209,6 +209,13 @@ bool FYarnVirtualMachine::Continue()
 
 		RunInstruction(Instruction);
 
+		// A handler may stop the VM and clear CurrentNode before this call unwinds.
+		if (!CurrentNode || ExecutionState == EYarnExecutionState::Stopped || ExecutionState == EYarnExecutionState::Error)
+		{
+			bIsContinuing = false;
+			return ExecutionState != EYarnExecutionState::Error;
+		}
+
 		// Always increment IP after each instruction.
 		// Jump instructions set IP to (destination - 1) anticipating this increment.
 		InstructionPointer++;

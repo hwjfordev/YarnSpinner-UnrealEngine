@@ -1,0 +1,114 @@
+{
+  "content_checked": 257,
+  "source_files": [
+    {
+      "sha256": "FD0AB112AAF74835FF5E1961810EE80B005F6CF4E5D394A679854EC748F0AFFE",
+      "path": "Source\\YarnSpinnerGameData\\YarnSpinnerGameData.Build.cs"
+    },
+    {
+      "sha256": "562F7A76A68E9B08599FD96BB39DD4D4938AD2A297C864A7B286B35CE839F449",
+      "path": "Source\\YarnSpinnerGameData\\Private\\GameDatabaseSubsystem.cpp"
+    },
+    {
+      "sha256": "0C5A2B7FD769CA1F087C5DEA083FF8CF3A3F0E1AFCFC3C1C53E18D5CD84246A9",
+      "path": "Source\\YarnSpinnerGameData\\Private\\GameDataBlueprintLibrary.cpp"
+    },
+    {
+      "sha256": "F17363FDF1710CC4F42DF0BB450FAFA2C4CEBC0CDE75212E75F7BAEDDB693D43",
+      "path": "Source\\YarnSpinnerGameData\\Private\\GameSaveSubsystem.cpp"
+    },
+    {
+      "sha256": "CA330DEFC5AF851F82C0DF5B55A79A9C886D023A5540E9706C0DB0539DA5F8A0",
+      "path": "Source\\YarnSpinnerGameData\\Private\\GameVariablesSubsystem.cpp"
+    },
+    {
+      "sha256": "01AC7F19753552A1499EC277FCECC52DE9207F94BBECB6D9D799F2239D8D50DD",
+      "path": "Source\\YarnSpinnerGameData\\Private\\SharedYarnDialogueRunner.cpp"
+    },
+    {
+      "sha256": "D7AB3161FAC4BD6558B9C5F538F566F37E008605809F95F0CE8765239F1A1375",
+      "path": "Source\\YarnSpinnerGameData\\Private\\SharedYarnVariableStorage.cpp"
+    },
+    {
+      "sha256": "572C074523399AD7D3CCD51F342EFDF2F5F45AD657BD2EECCDEB231F832766B3",
+      "path": "Source\\YarnSpinnerGameData\\Private\\YarnDatabaseBridge.cpp"
+    },
+    {
+      "sha256": "6E150B9901D3E12FED0E06005D3EC4A9C40FC2E969207B17BE02BE104B0C7CCA",
+      "path": "Source\\YarnSpinnerGameData\\Private\\YarnSpinnerGameDataModule.cpp"
+    },
+    {
+      "sha256": "205CB3EB21F10BE5F607958093910898F956ABA8F51BBA506357A6290E464396",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameDatabaseSubsystem.h"
+    },
+    {
+      "sha256": "07F1AC06416A0A75B12FC407D9B40EC24FFFE3ADAF8B1BFE21776C1DA535D81E",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameDatabaseTypes.h"
+    },
+    {
+      "sha256": "438FED759A3F93C541789E3B3BC52F2D24EA41AD34DAAE4C656EBDED4C921E0C",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameDataBlueprintLibrary.h"
+    },
+    {
+      "sha256": "CA0062ADF069F6E6931427C0B9EA6A27F11EC778AEBCEDA35C775240D335CEDD",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameDataTypes.h"
+    },
+    {
+      "sha256": "D25028080AA37257DA60E11A6C26E6D8D3C2271B08E4FAA762BBE16F9603626A",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameProgressSave.h"
+    },
+    {
+      "sha256": "4EB6DA7E9AF8DBBB3468AF038F32580C4C82E1C94CBFAB33B15DE1059F5D6737",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameSaveSubsystem.h"
+    },
+    {
+      "sha256": "3E8BEA663E7F09BD24B5CEB48FCD13B808604B7C03C273C6B9FE2AFFEAD1F489",
+      "path": "Source\\YarnSpinnerGameData\\Public\\GameVariablesSubsystem.h"
+    },
+    {
+      "sha256": "318ECE2B6C2B54B4732B6D34422D8B55D43CF5ED7644536BA211BD84D2F772A3",
+      "path": "Source\\YarnSpinnerGameData\\Public\\SharedGameDataSettings.h"
+    },
+    {
+      "sha256": "4AEA0712636FBFCD215BD849B6A472718FC54A53ED941ACDC393032A12B9CCEF",
+      "path": "Source\\YarnSpinnerGameData\\Public\\SharedYarnDialogueRunner.h"
+    },
+    {
+      "sha256": "54C298BD92CBA9D7D4C6CA0A253DD4C8B59B600399769F3016CE2358BB0ABD3E",
+      "path": "Source\\YarnSpinnerGameData\\Public\\SharedYarnVariableStorage.h"
+    },
+    {
+      "sha256": "CBF6D490D9F91CDF64ADD56EA05E11722557128D8A569F2E735DE4D4F11C1479",
+      "path": "Source\\YarnSpinnerGameData\\Public\\YarnDatabaseBridge.h"
+    },
+    {
+      "sha256": "CF87D610A37E04B66B1BC5F160C93BEDA21065A73407055AA5BE2AF5D87EFEAC",
+      "path": "Source\\YarnSpinnerEditor\\Private\\Tests\\GameData\\DatabaseChecks.inl"
+    },
+    {
+      "sha256": "7FEC55AFE9F7519DED2B3CD170CEDC54B919C2612C6A9B3DCC45DD4C4CD3B80F",
+      "path": "Source\\YarnSpinnerEditor\\Private\\Tests\\GameData\\DatabaseTestTypes.h"
+    },
+    {
+      "sha256": "B850637DDE341D5C40E8E94359F8128A901BF09A1E8A00040FFFC42F7DF1BF8B",
+      "path": "Source\\YarnSpinnerEditor\\Private\\Tests\\GameData\\SharedGameDataTestCommandlet.cpp"
+    },
+    {
+      "sha256": "9B94BE18B2D2397BE2B5BC5BA10371F08569ACD86C3C8DEC6184105645827E0C",
+      "path": "Source\\YarnSpinnerEditor\\Private\\Tests\\GameData\\SharedGameDataTestCommandlet.h"
+    },
+    {
+      "sha256": "7792399FF50FE67F7C08423A546FF8B856B175BAB4B201C95172607FBEBD9F5B",
+      "path": "Source\\YarnSpinner\\Private\\YarnVirtualMachine.cpp"
+    }
+  ],
+  "whole_game_packaged": false,
+  "plugin_editor_build": true,
+  "plugin_shipping_build": true,
+  "timestamp_utc": "2026-10-07T11:55:07.0444720Z",
+  "editor_build": true,
+  "project_modules": false,
+  "content_changed": 0,
+  "ui_play_tested": false,
+  "plugin_development_build": true
+}

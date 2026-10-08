@@ -1,0 +1,502 @@
+[
+  {
+    "path": "Config/DefaultYarnSpinner.ini",
+    "sha256": "152e17b6e6e5432b25b2c90d3d602784ffe7c3810dfe71d49fc539519593564e"
+  },
+  {
+    "path": "Config/FilterPlugin.ini",
+    "sha256": "cdb198798e6ea915ff427677eba95aba91a43233327e9bdd78466e913ebd9db5"
+  },
+  {
+    "path": "Scripts/BuildGameDataPlugin.ps1",
+    "sha256": "1be19866ae884a4cca011dc0a19c4e5fd8cbac32b0174e0dd92eb979324a9104"
+  },
+  {
+    "path": "Scripts/TestGameData.ps1",
+    "sha256": "2e9f006caca77a750134cc11b79ab7e7a6ea479e023590e2dd8053a580b9cba5"
+  },
+  {
+    "path": "Scripts/VerifyGameDataAPI.py",
+    "sha256": "e7a5911dd6f74eb3671c308e96ebd03a752650eef695a99e346f1561d9751740"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/Tests/YarnBehaviourParityTests.cpp",
+    "sha256": "836e28f787e128062b01a055d4a78aba92289ad3075b5a8311624490778fb20c"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/Tests/YarnFeatureTests.cpp",
+    "sha256": "148d36506ee86f06f41288e40928e17725599b3f8b5b033811b9bb64e6c2dba0"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/Tests/YarnMarkupParityTests.cpp",
+    "sha256": "f37c7311dd553afe42f8d8b94f9254e25165c2bb65c3af3cdc969aeacec7ede1"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/Tests/YarnSpinnerTests.cpp",
+    "sha256": "b23d88c8332dfbf9e61cd1f4810e413c9c282c4db55eb3c2569f4f44e6ce1fba"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnActionMarkupHandler.cpp",
+    "sha256": "b274f900d249ddb7590f822891c446ecc45587d63f2a8237030858a9e089c0f6"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnAssetProvider.cpp",
+    "sha256": "bf9b8e413d4e14f39b1db537aacc89217a0c4a9d7f0fe20d48287536b6ed551c"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnBlueprintLibrary.cpp",
+    "sha256": "dbcf6e951b740628c730f6c215d7890d1dc9e5d09484474c2b0873be5c1ae567"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnCancellationToken.cpp",
+    "sha256": "a2531a1c7cde1f493c7dfe8b2c2f9a1d49979358f01921ab5f75e1711f2227a1"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnCommandLibrary.cpp",
+    "sha256": "a240e979d2c3f0ddee3281310eb7a8e4af063878caa5932101d994d90ff736fe"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnCommandRegistry.cpp",
+    "sha256": "ed4769e242db5a0b6c86f02cad531872d46d2324ae9f608f3cc1e61954fc0491"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnDebugHUD.cpp",
+    "sha256": "222a43b4939a46722182d440bf6a23cab9a9c0b41264a386c0047706e0bfd2c8"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnDialogueInstance.cpp",
+    "sha256": "a718e81763cff3ff0543a04f7a40deec9a8f8d38b18a367abc44501d20c799fc"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnDialoguePresenter.cpp",
+    "sha256": "afb51fbe1dc9fd05675ec5274e4b3b7d69f3847fb55ec2784ac195b3fb93e79e"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnDialogueRunner.cpp",
+    "sha256": "32f0d0dbd7d24b1c74c7eb5a43386f37577e51cb0487bde666c0f6632626be14"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnDialogueWidget.cpp",
+    "sha256": "7e89af92577134a98af9a75a1584efa7185821a9a407d54ad72291af51d0dd4f"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnEffects.cpp",
+    "sha256": "adeae318cb1a23652961e2b204aa42008ad837ba6cea49474fbc2e0e06dcc901"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnInputHandler.cpp",
+    "sha256": "6db52c03d95f85ccb241be3ca5fc3950b6825f54bca98615124e87e60c61f703"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnLineAdvancer.cpp",
+    "sha256": "651c50c0305c20101212903a52c1acc1f1a54efb3172243893e6afe966476dbf"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnLineMetadata.cpp",
+    "sha256": "df1e255dc8064e2abc7eb5dc9c1a30a2156c5a706e097f40b6a4523fd7c108d0"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnLinePresenter.cpp",
+    "sha256": "dd16e58e142b3891894b880fe1e486527971bef3da4479e65ec2a45b7fee3158"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnLocalization.cpp",
+    "sha256": "fa3fc0a165c93ac568cdb595095591c0b8638ca1447a3a6555bc971b118b4e77"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnLocalizationExport.cpp",
+    "sha256": "724f26092c7585a1035982f6c5a5d63ecfe7194c6c382fcb8f561cd0bd71290f"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnMarkup.cpp",
+    "sha256": "8896d6367affbe867a5dc2a55f19f4080a7c7de0dd88d33db670dfd5c958d809"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnNodeReference.cpp",
+    "sha256": "053789827d922fba65feaa8164a0e7e715f5cd4e24edbe9ed6c530e35c293b08"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnOptionsPresenter.cpp",
+    "sha256": "7f3b369641a857d992cb6ab37e42efc968855f35461b656de744ccc3a5c17421"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnProgram.cpp",
+    "sha256": "932f5c05f7cca2430bd231eff21b03e7f4cbcd8adb9a9d26e15f6181c7706584"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnSaliency.cpp",
+    "sha256": "5092660d575412702580ecf94ec6ea1bb8036b2d0221d1544c193957daf28d2e"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnSmartVariables.cpp",
+    "sha256": "de416f4485564f2a66314d8162f2c57eec85605055c0041f3d16aa6e6bbae509"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnSourceFile.cpp",
+    "sha256": "e248b1db7436c32d2cd3e251605dbb4f53554795b289529f6f7b6ff38e1d1dd0"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnSpinnerCore.cpp",
+    "sha256": "1bebe2ecc1ba3cc684590a15bd4d0d061faf3e2dd8248af6bff40e76985d23b9"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnSpinnerModule.cpp",
+    "sha256": "fe68818753afa40090efa509a2cd28e95b2bcbc209642dc2cbb95e76430840db"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnUnicodeNormalization.cpp",
+    "sha256": "322cc05475dab411a3658f67f61636ecad718aa13e223cb144066d65eda4cec6"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnVariableStorage.cpp",
+    "sha256": "1cc6c97b0cb2df19355c5154dec0bb7f18a813ffe3440cdb5304c1f10d5d8814"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnVirtualMachine.cpp",
+    "sha256": "0ec825e2e25f141d893ba448f5e181a65600f1f018e68201210d8e90ab381324"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnVoiceOverPresenter.cpp",
+    "sha256": "0bf4de5f3b1047b9c5ae18d5c49b7ac0bac90d18e0cd8e50ae2895eddc123901"
+  },
+  {
+    "path": "Source/YarnSpinner/Private/YarnWidgetPresenter.cpp",
+    "sha256": "62d5aa10ef869777341b20e43516b7cdfbe182a3cbd8bad720d72a9843c53712"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnActionMarkupHandler.h",
+    "sha256": "e0aeca3f67dcb8282387a596a74d8001683e9d44657510e8136d90dfe1a4e54a"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnAssetProvider.h",
+    "sha256": "35c3bb6db7af06a9f52b626aabcd7898494fee5e92c0ccecd261b3d9ad25fe1d"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnBlueprintLibrary.h",
+    "sha256": "260a6d334933cf15bf397fbed669d82c3b7f0ee7d6b08aba831fe3f9c63f6674"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnCancellationToken.h",
+    "sha256": "5ab5c2483cb6fe089f6f818c3cc85fe4c8d76722f1df9bac1e389c2068446164"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnCommandLibrary.h",
+    "sha256": "2db123bd390786599bf46a02dd53b49afe04c66fce657072f90ae08f13f25602"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnCommandRegistry.h",
+    "sha256": "18f30a1ad69cdcca62f05d8bc642c20442f52b0ff95f2fe7bd14e7527ed2e4aa"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnDebugHUD.h",
+    "sha256": "a2fa90a679c3e9c1edf5e36312dfc99b2d58fb0ba25c97174f5297799ee73d1b"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnDialogueInstance.h",
+    "sha256": "215d2e8649ec8b5c4a5c768b9d0db87d4b720ac3de48ea5c9ab4adba1cd772bc"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnDialoguePresenter.h",
+    "sha256": "1079424aea00674de752a29b4ba88d34eb6931713cfefbaed88079e48c252d55"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnDialogueRunner.h",
+    "sha256": "b97efa73dd0ad9901933be9aa8890038455f1916491c39a755bba1213b69d37e"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnDialogueWidget.h",
+    "sha256": "4a3b0560a27c9619a47456a48166ad2759341df5d742aec06b6bc72a76e04dee"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnEffects.h",
+    "sha256": "52b5a2b9235aed6f4401e714d84ed1a53aaeea76b9deccd4f2e6c80365993703"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnInputHandler.h",
+    "sha256": "d2edacbf986146688aa2cc325379da242a94e2b13a528de89cd3c1cbcc859491"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnLineAdvancer.h",
+    "sha256": "fd8eae45b00c021d8a840d48b18fdfe514e48fa0cc80ba0101f246618702172c"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnLineMetadata.h",
+    "sha256": "b5f71e7c037e9d8698601cda315d57cbf5fc9d6be1590e863741db174718d47c"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnLinePresenter.h",
+    "sha256": "7eaada80373b6ff540aec6fe0e7a43bd23bab9f1b8ce570943845df51f5fb0e2"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnLocalization.h",
+    "sha256": "af1f8479d32e76127c7980d4c662adcde7292668d4918afef9d0cccd711b649c"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnLocalizationExport.h",
+    "sha256": "27ddd543e85da9c91d7f64620fb24ff333ece0795d589d9cf7489b4f896b4cbd"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnMarkup.h",
+    "sha256": "6f3f885fe89ea09958637cf2b43a69933c23191eaedacc1f5fafc3dcb9e91168"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnNodeReference.h",
+    "sha256": "14ba1526cdbe953bb915b37ec77f65042f01e257e59305c1897fffceefd9b6cc"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnOptionsPresenter.h",
+    "sha256": "236c6c8696c8cd4be629f6cc220f1d928e021c8175667c135058cf9239ce162c"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnPresenterTypes.h",
+    "sha256": "c016ba41fc9f4501596c5f589e55f5fecfa0ae6a5c729f2d66d142b2e8f5359e"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnProgram.h",
+    "sha256": "48db86190f0254f3af80a8a71c4f1407a461ba629e8604dcab3ec02870972926"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnSaliency.h",
+    "sha256": "c0b9d1f7dbca4eb9cda73c6bc4f398d29c428d73222fd755481df7325c920746"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnSmartVariables.h",
+    "sha256": "c13a1bc00d80e0dc0c835583348f7e3ec128de69f2a46e0e624d740d8f783ebe"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnSourceFile.h",
+    "sha256": "e353379c0ff522a9f2110422b62a25429e4ec07cb44d8a7edadb3d89ec9f45a5"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnSpinnerCore.h",
+    "sha256": "27af472f878e4b269d987667184a8c6afa02af2b8b6a45ca85dc0e9d3dee2341"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnSpinnerModule.h",
+    "sha256": "c390285ddc3a2bd9e9fa0ca157dadfebe961e1d10feb14c923c1539d6acc190d"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnUnicodeNormalization.h",
+    "sha256": "9da95170b8005a97b68955e4de00cf2e8030e7c6b7c4b659bf424b242412ba53"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnVariableStorage.h",
+    "sha256": "4116041b775194b69b702e8cc03cdeba59dd27adc3cb41e1740e5b6283057adb"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnVirtualMachine.h",
+    "sha256": "30abce407e49d5a94375965169001d26a972e5c9d378c427c9dbc083f8b3b727"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnVoiceOverPresenter.h",
+    "sha256": "f0e726b00467d1f4965718679069b24d23e99b77d29180a3095c273fe9e5ad3b"
+  },
+  {
+    "path": "Source/YarnSpinner/Public/YarnWidgetPresenter.h",
+    "sha256": "7f472da48573aaa69380244d790ed5d5a4bd0724169cb9750874601f0c95de41"
+  },
+  {
+    "path": "Source/YarnSpinner/YarnSpinner.Build.cs",
+    "sha256": "ef4062e214806f95151429f359caed30161e920897d0dd9a072538760f89db29"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/AssetDefinition_YarnProject.cpp",
+    "sha256": "35049c5a6803f49c489e3d96e1fb7de07f2e3116d9c933f760d0e44313eecd88"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/AssetDefinition_YarnProject.h",
+    "sha256": "31ff9e2658af1fc533f988690de8bc3a9526eca24c8e37b40b8c836203cf72dc"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/GameData/SharedGameDataTestCommandlet.cpp",
+    "sha256": "9061413dc4d95ea1b3db9c8b8d8f01299b567f6bc28f139f16092ca0f70e863e"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/GameData/SharedGameDataTestCommandlet.h",
+    "sha256": "9b94be18b2d2397be2b5bc5ba10371f08569acd86c3c8dec6184105645827e0c"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/GameData/WorldSaveTestTypes.cpp",
+    "sha256": "602bcfecbf8d35cc3771c06934718eabd1ee458ac2e2470810e94d9551d58f06"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/GameData/WorldSaveTestTypes.h",
+    "sha256": "4a56efa5341291ced859abc62f9b6c07f6aa6158628ea81f4722feb22b2b6181"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/YarnTestPlanPresenter.h",
+    "sha256": "9d044aa0db27f738983e91038fb2a0e616bacf6a28319b6f35e932906d702d54"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/Tests/YarnTestPlanTests.cpp",
+    "sha256": "f93144f37875e9f435ef2c2af412dc62339c9b98323cb65283e2f6e94fb8e124"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnBrandedDetails.cpp",
+    "sha256": "062d723325a59bc364c152c3b3072483d67c771b689b9fb0b13872523b51a6f6"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnBrandedDetails.h",
+    "sha256": "909a2400df37b1bb247e72397c09e6226ca68c21502fd82ca9e1a3a318137707"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnEditorPaths.h",
+    "sha256": "aacac7cc78630ee06c08cade1d733716538e9f0102cf7f64af08b2f8bd5a3d91"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnNodeReferenceCustomization.cpp",
+    "sha256": "79af5b1ed18fe024ede62d931f4c7704b2c40292625acabee42861f4f5ac675b"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnNodeReferenceCustomization.h",
+    "sha256": "8971f3c32e88adbd1237e1b46bc3591eb7bad86dde70f514e2d4673f20d96bdf"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnProjectFactory.cpp",
+    "sha256": "a7dd966de42ab1023331708062bd8e51bba01adaee2e59b43c306ffa91916a2a"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnProtobufParser.cpp",
+    "sha256": "4d3469114be592524e87a22497b20dc775c8cf574420acf42077708460a0ffa9"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnSourceFileFactory.cpp",
+    "sha256": "f1166e06ba9a3e36d401ec3bc651e31893ff186f596dc5da37305988de438de4"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnSpinnerEditorModule.cpp",
+    "sha256": "7d8f7c870a24225cbc9cce584008ac9072e846d4c328b7a108314df097e9346e"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnSpinnerEditorSettings.cpp",
+    "sha256": "544dcf75af78d31f7e304142d704d12724cb333ad9665e8663e1b91b7f935dce"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Private/YarnYSLSGenerator.cpp",
+    "sha256": "b660f166371ff9be6a0537a2a6e52295aac96d188d1107b7cbe7f781f52ab866"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnProjectFactory.h",
+    "sha256": "65854879fdd52c7a1b94cebbfc7fd98c776e93bb2c758f4b82fbcfe671685636"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnProtobufParser.h",
+    "sha256": "1dc2772630ec290ced01a653f8dad6457bf6a7ac953b4599204aeea1d61d047d"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnSourceFileFactory.h",
+    "sha256": "d5f0ef06552928c680bf50f551a269d515be789d79ac5578c68a5f8530309612"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnSpinnerEditorModule.h",
+    "sha256": "b620c7d53400e1f4a5097ffd96356d2f6990f561987f1c52d5bf1080d4001639"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnSpinnerEditorSettings.h",
+    "sha256": "24034a0890bd3bc1b4c23c8aeb0761a369b9b00186ce5bf8235d91a3b4667026"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/Public/YarnYSLSGenerator.h",
+    "sha256": "89255d6b8d04ae18d61de01b54a86d601e144eb0167150ce20867d79f8ef4c5c"
+  },
+  {
+    "path": "Source/YarnSpinnerEditor/YarnSpinnerEditor.Build.cs",
+    "sha256": "0a8baac1bc548d99fb98f94dfe4d0944e337cf845365aed323437d94f266dd56"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/GameDataBlueprintLibrary.cpp",
+    "sha256": "4cd7b62851f17c95d2bda7ffcc018e4e33d2486b9ae398e08840e193ae347d28"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/GameSaveSubsystem.cpp",
+    "sha256": "643f182b7eb3028103b2e0e495d36300018cd37c70e11e9789f4615369fe9e0b"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/GameVariablesSubsystem.cpp",
+    "sha256": "2f0272a728cddb3724e7b9113de0c4dbc6e08afbf52c6ab7f06ce7477a7556d6"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/GameWorldStateSubsystem.cpp",
+    "sha256": "7783132a76de7e30236e37306f67bf230462d2303887895f1c000c3f272c350c"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/PersistentActorComponent.cpp",
+    "sha256": "8196de79d6180c17066fb8a6fe04d8ad7451def3dbca7a3446a8636b2eabc061"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/SharedYarnDialogueRunner.cpp",
+    "sha256": "01ac7f19753552a1499ec277fcecc52de9207f94bbecb6d9d799f2239d8d50dd"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/SharedYarnVariableStorage.cpp",
+    "sha256": "d7ab3161fac4bd6558b9c5f538f566f37e008605809f95f0ce8765239f1a1375"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/WorldSaveRegistrySubsystem.cpp",
+    "sha256": "cf5fc72e1788adc09bab6e3effdd0979785798201a1dd2b149987dbab27edaa0"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Private/YarnSpinnerGameDataModule.cpp",
+    "sha256": "6e150b9901d3e12fed0e06005d3ec4a9c40fc2e969207b17be02be104b0c7cca"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameDataBlueprintLibrary.h",
+    "sha256": "ced7e7dfd4ce49832c4111c9c20954bfee76f7545d3cc231813015752801c622"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameDataTypes.h",
+    "sha256": "a00a3682f17cdb05764a86503e7b266ca54922ae0e47f8d02ffe2b58309c1d76"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameProgressSave.h",
+    "sha256": "448fb608e75d3600b5d337389c3c65b2cc1abd651879a51550c05b6f178eb39f"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameSaveParticipant.h",
+    "sha256": "178d57b48c428f973309c62bdf0c460982269ddbeebdde456f11f4890b5167e2"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameSaveSubsystem.h",
+    "sha256": "9cc9a67e5cd9c63f0d4d7952d9c8414429e07941e78f0b7897293c678edd052e"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameVariablesSubsystem.h",
+    "sha256": "26bb4e07178a6f5c77c102435d1a9e92b9aab619fada589e5149e4b8f18b75f6"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/GameWorldStateSubsystem.h",
+    "sha256": "df831827161b0ee16b45e95917d3191aa8be38971cca07239e90d31128ffbad8"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/PersistentActorComponent.h",
+    "sha256": "fff93e7213a04a97e16ea57b71663f2a549b61ca2d55c9063f541fe46d94c7bb"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/SharedGameDataSettings.h",
+    "sha256": "3e656e3ebd35283c6dcc4f78bb1df09e22b80c95e18374c9ea7b3b8765099d91"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/SharedYarnDialogueRunner.h",
+    "sha256": "4aea0712636fbfcd215bd849b6a472718fc54a53ed941acdc393032a12b9ccef"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/SharedYarnVariableStorage.h",
+    "sha256": "db5036b1607cd73ae161c273dbe7d2953fd70f05240229ad77499725d90c4618"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/WorldSaveRegistrySubsystem.h",
+    "sha256": "50ac9ef1b58a2b6a87816c8f00f6055dfeec86a90e7bd24a1f96d37548f833fc"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/Public/WorldSaveTypes.h",
+    "sha256": "f8bf9399efed2bc44e5bee84fc596a6dc2a5ae0cb445d81a7ac7a108679ac5dc"
+  },
+  {
+    "path": "Source/YarnSpinnerGameData/YarnSpinnerGameData.Build.cs",
+    "sha256": "fd0ab112aaf74835ff5e1961810ee80b005f6cf4e5d394a679854ec748f0affe"
+  },
+  {
+    "path": "YarnSpinner.uplugin",
+    "sha256": "855b773ebcc6a1a114971ad42359a174d993fae5fff1977e3ea5f484acdbdd06"
+  }
+]

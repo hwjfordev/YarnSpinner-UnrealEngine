@@ -306,3 +306,10 @@ Localisation uses the Yarn Spinner compiler's CSV string table export. The compi
 ### Voice Over
 
 The `UYarnVoiceOverPresenter` component plays audio assets matched to dialogue line IDs. Place your audio files in a content directory structure that maps to line IDs, configure the presenter with the base path, and it will automatically find and play the right audio for each line. Supports `USoundBase` assets (wav, ogg, etc.). Override `GetVoiceOverClip` in a Blueprint subclass for custom audio resolution.
+
+
+## Project-local extension: YarnSpinnerGameData
+
+This fork includes an actor-independent runtime database and versioned saves with a Blueprint migration interface in a separate runtime module. NPC DataTables provide defaults; session data stores NPC state, inventory/currency, equipment IDs, custom Blueprint progress structs and Yarn variables. Blueprint projects can use a matching prebuilt plugin without their own C++ module.
+
+See [installation](Docs/PluginSetup.md), [Blueprint tutorial](Docs/DatabaseQuickStart.md), [module/function flowcharts](Docs/SaveSystemArchitecture.md) and [save migration](Docs/SaveMigration.md) and [validation](Docs/SaveMigrationValidation.md). Original licensing and credits above remain unchanged.

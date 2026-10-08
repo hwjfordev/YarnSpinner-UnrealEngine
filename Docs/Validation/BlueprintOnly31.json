@@ -1,0 +1,132 @@
+{
+	"passed": true,
+	"failures": 0,
+	"timestamp_utc": "2026-10-07T09:12:07.073Z",
+	"engine": "5.8.3-58210709+++UE5+Release-5.8",
+	"checks": [
+		{
+			"name": "Player/NPC/runtime actors register through their components",
+			"passed": true
+		},
+		{
+			"name": "Configured SaveGame subclass captures a world snapshot",
+			"passed": true
+		},
+		{
+			"name": "World/custom subclass disk write succeeds",
+			"passed": true
+		},
+		{
+			"name": "Disk includes configured custom fields, typed player data and unloaded level records",
+			"passed": true
+		},
+		{
+			"name": "InstancedStruct captures a deep request-time snapshot",
+			"passed": true
+		},
+		{
+			"name": "World race test begins loading",
+			"passed": true
+		},
+		{
+			"name": "Movement during async loading prevents stale world overwrite",
+			"passed": true
+		},
+		{
+			"name": "Load publishes data without moving or mutating existing actors",
+			"passed": true
+		},
+		{
+			"name": "Saving is blocked until loaded world state is applied",
+			"passed": true
+		},
+		{
+			"name": "Legacy variable import cannot cancel a pending world restoration",
+			"passed": true
+		},
+		{
+			"name": "Old-world EndPlay cannot overwrite newly loaded records",
+			"passed": true
+		},
+		{
+			"name": "Placed actor registering after load restores its ID-matched transform and attributes",
+			"passed": true
+		},
+		{
+			"name": "Explicit world apply restores player and recreates runtime actors",
+			"passed": true
+		},
+		{
+			"name": "Player position, inventory, runtime identity and custom SaveGame apply all restore",
+			"passed": true
+		},
+		{
+			"name": "Duplicate IDs fail visibly and prevent silently incomplete saves",
+			"passed": true
+		},
+		{
+			"name": "Explicit removal records a tombstone",
+			"passed": true
+		},
+		{
+			"name": "Ordinary unload/destruction retains the latest actor snapshot without deleting its identity",
+			"passed": true
+		},
+		{
+			"name": "Saving after unload preserves absent actors and explicit removals",
+			"passed": true
+		},
+		{
+			"name": "Entire world snapshot loads into a fresh GameInstance",
+			"passed": true
+		},
+		{
+			"name": "Fresh-world restoration keeps removed runtime items absent and restores unloaded NPC state",
+			"passed": true
+		},
+		{
+			"name": "Restoring one map preserves snapshots for other maps",
+			"passed": true
+		},
+		{
+			"name": "Custom actor validation rejects before world mutation and keeps restore pending",
+			"passed": true
+		},
+		{
+			"name": "World application can be retried after a project validation issue is corrected",
+			"passed": true
+		},
+		{
+			"name": "Invalid world payload rejects before either subsystem is replaced",
+			"passed": true
+		},
+		{
+			"name": "Version-one variable saves migrate into version-two configured class with empty world defaults",
+			"passed": true
+		},
+		{
+			"name": "Actors missing from an older save restore their registration-time defaults",
+			"passed": true
+		},
+		{
+			"name": "New game resets variables and world records together",
+			"passed": true
+		},
+		{
+			"name": "EndPlay after new game cannot repopulate cleared snapshots",
+			"passed": true
+		},
+		{
+			"name": "Player state loads with a different destination map ready",
+			"passed": true
+		},
+		{
+			"name": "Player attributes and inventory cross maps without teleporting to another map's coordinates",
+			"passed": true
+		},
+		{
+			"name": "World tests remove only their own randomly named test slots",
+			"passed": true
+		}
+	]
+}

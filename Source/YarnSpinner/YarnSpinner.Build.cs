@@ -22,6 +22,8 @@ public class YarnSpinner : ModuleRules
 	public YarnSpinner(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        // File-local names in this alpha conflict in unity translation units.
+        bUseUnity = false;
 
 		PublicIncludePaths.AddRange(
 			new string[] {

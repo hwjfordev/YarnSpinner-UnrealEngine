@@ -1,0 +1,292 @@
+{
+	"passed": true,
+	"failures": 0,
+	"timestamp_utc": "2026-10-07T09:10:45.237Z",
+	"engine": "5.8.3-58210709+++UE5+Release-5.8",
+	"checks": [
+		{
+			"name": "Declarations available before creating any runner",
+			"passed": true
+		},
+		{
+			"name": "Untouched zero/false defaults are included",
+			"passed": true
+		},
+		{
+			"name": "Missing and false are distinguishable",
+			"passed": true
+		},
+		{
+			"name": "Only actual changes emit per-variable notification",
+			"passed": true
+		},
+		{
+			"name": "Wrong-type writes preserve state",
+			"passed": true
+		},
+		{
+			"name": "Invalid snapshot rejects atomically",
+			"passed": true
+		},
+		{
+			"name": "Conflicting declarations reject atomically",
+			"passed": true
+		},
+		{
+			"name": "New declarations fill missing keys from older snapshots",
+			"passed": true
+		},
+		{
+			"name": "New game restores defaults",
+			"passed": true
+		},
+		{
+			"name": "Runner subclass installs native shared storage",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 1: introduction and goodbye",
+			"passed": true
+		},
+		{
+			"name": "VM writes are visible through subsystem",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 2: purchase",
+			"passed": true
+		},
+		{
+			"name": "Purchase updates all shared values",
+			"passed": true
+		},
+		{
+			"name": "Active dialogue blocks reset/load/storage replacement",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 3: gameplay grants items then quest turn-in",
+			"passed": true
+		},
+		{
+			"name": "VM sees external gameplay writes and grants reward",
+			"passed": true
+		},
+		{
+			"name": "Replacing actor and attaching an existing runner preserves data",
+			"passed": true
+		},
+		{
+			"name": "Mira flow 4: another conversation after actor recreation",
+			"passed": true
+		},
+		{
+			"name": "Conversation count persists across runners",
+			"passed": true
+		},
+		{
+			"name": "Storage Execute interface round-trips false",
+			"passed": true
+		},
+		{
+			"name": "Smart variables are evaluated without persisting computed values",
+			"passed": true
+		},
+		{
+			"name": "Expired evaluator owner prevents dangling calls",
+			"passed": true
+		},
+		{
+			"name": "Async save accepted",
+			"passed": true
+		},
+		{
+			"name": "Overlapping operations rejected",
+			"passed": true
+		},
+		{
+			"name": "Async save completes exactly once",
+			"passed": true
+		},
+		{
+			"name": "New GameInstance starts with its own independent state",
+			"passed": true
+		},
+		{
+			"name": "Async disk load into a fresh GameInstance succeeds",
+			"passed": true
+		},
+		{
+			"name": "Disk round-trip preserves snapshot, zero, false, empty string and Yarn internal state",
+			"passed": true
+		},
+		{
+			"name": "Checkpoint restored without automatically starting dialogue",
+			"passed": true
+		},
+		{
+			"name": "Runner created after loading does not reset loaded values",
+			"passed": true
+		},
+		{
+			"name": "Loaded state can resume at an explicit safe Yarn node",
+			"passed": true
+		},
+		{
+			"name": "Missing-slot load preserves live state",
+			"passed": true
+		},
+		{
+			"name": "Race test load accepted",
+			"passed": true
+		},
+		{
+			"name": "Stale async load cannot overwrite newer gameplay",
+			"passed": true
+		},
+		{
+			"name": "Unsupported save version preserves live state",
+			"passed": true
+		},
+		{
+			"name": "New game removes session-only and tracking keys",
+			"passed": true
+		},
+		{
+			"name": "Legacy slot namespace is protected",
+			"passed": true
+		},
+		{
+			"name": "Test cleans only its uniquely named save slot",
+			"passed": true
+		},
+		{
+			"name": "Pre-migration project-module save loads through plugin redirects and legacy format compatibility",
+			"passed": true
+		},
+		{
+			"name": "Player/NPC/runtime actors register through their components",
+			"passed": true
+		},
+		{
+			"name": "Configured SaveGame subclass captures a world snapshot",
+			"passed": true
+		},
+		{
+			"name": "World/custom subclass disk write succeeds",
+			"passed": true
+		},
+		{
+			"name": "Disk includes configured custom fields, typed player data and unloaded level records",
+			"passed": true
+		},
+		{
+			"name": "InstancedStruct captures a deep request-time snapshot",
+			"passed": true
+		},
+		{
+			"name": "World race test begins loading",
+			"passed": true
+		},
+		{
+			"name": "Movement during async loading prevents stale world overwrite",
+			"passed": true
+		},
+		{
+			"name": "Load publishes data without moving or mutating existing actors",
+			"passed": true
+		},
+		{
+			"name": "Saving is blocked until loaded world state is applied",
+			"passed": true
+		},
+		{
+			"name": "Legacy variable import cannot cancel a pending world restoration",
+			"passed": true
+		},
+		{
+			"name": "Old-world EndPlay cannot overwrite newly loaded records",
+			"passed": true
+		},
+		{
+			"name": "Placed actor registering after load restores its ID-matched transform and attributes",
+			"passed": true
+		},
+		{
+			"name": "Explicit world apply restores player and recreates runtime actors",
+			"passed": true
+		},
+		{
+			"name": "Player position, inventory, runtime identity and custom SaveGame apply all restore",
+			"passed": true
+		},
+		{
+			"name": "Duplicate IDs fail visibly and prevent silently incomplete saves",
+			"passed": true
+		},
+		{
+			"name": "Explicit removal records a tombstone",
+			"passed": true
+		},
+		{
+			"name": "Ordinary unload/destruction retains the latest actor snapshot without deleting its identity",
+			"passed": true
+		},
+		{
+			"name": "Saving after unload preserves absent actors and explicit removals",
+			"passed": true
+		},
+		{
+			"name": "Entire world snapshot loads into a fresh GameInstance",
+			"passed": true
+		},
+		{
+			"name": "Fresh-world restoration keeps removed runtime items absent and restores unloaded NPC state",
+			"passed": true
+		},
+		{
+			"name": "Restoring one map preserves snapshots for other maps",
+			"passed": true
+		},
+		{
+			"name": "Custom actor validation rejects before world mutation and keeps restore pending",
+			"passed": true
+		},
+		{
+			"name": "World application can be retried after a project validation issue is corrected",
+			"passed": true
+		},
+		{
+			"name": "Invalid world payload rejects before either subsystem is replaced",
+			"passed": true
+		},
+		{
+			"name": "Version-one variable saves migrate into version-two configured class with empty world defaults",
+			"passed": true
+		},
+		{
+			"name": "Actors missing from an older save restore their registration-time defaults",
+			"passed": true
+		},
+		{
+			"name": "New game resets variables and world records together",
+			"passed": true
+		},
+		{
+			"name": "EndPlay after new game cannot repopulate cleared snapshots",
+			"passed": true
+		},
+		{
+			"name": "Player state loads with a different destination map ready",
+			"passed": true
+		},
+		{
+			"name": "Player attributes and inventory cross maps without teleporting to another map's coordinates",
+			"passed": true
+		},
+		{
+			"name": "World tests remove only their own randomly named test slots",
+			"passed": true
+		}
+	]
+}

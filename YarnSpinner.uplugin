@@ -1,29 +1,34 @@
 {
-	"FileVersion": 3,
-	"Version": 9,
-	"VersionName": "3.2.8-alpha9",
-	"FriendlyName": "Yarn Spinner",
-	"Description": "Yarn Spinner for Unreal Engine.",
-	"Category": "Dialogue",
-	"CreatedBy": "Yarn Spinner Pty. Ltd.",
-	"CreatedByURL": "https://yarnspinner.dev",
-	"DocsURL": "https://docs.yarnspinner.dev",
-	"MarketplaceURL": "",
-	"SupportURL": "https://discord.gg/yarnspinner",
-	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": true,
-	"Installed": false,
-	"Modules": [
-		{
-			"Name": "YarnSpinner",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		},
-		{
-			"Name": "YarnSpinnerEditor",
-			"Type": "Editor",
-			"LoadingPhase": "Default"
-		}
-	]
+  "FileVersion": 3,
+  "Version": 9,
+  "VersionName": "3.2.8-alpha9",
+  "FriendlyName": "Yarn Spinner",
+  "Description": "Yarn Spinner for Unreal Engine.",
+  "Category": "Dialogue",
+  "CreatedBy": "Yarn Spinner Pty. Ltd.",
+  "CreatedByURL": "https://yarnspinner.dev",
+  "DocsURL": "https://docs.yarnspinner.dev",
+  "MarketplaceURL": "",
+  "SupportURL": "https://discord.gg/yarnspinner",
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": true,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "YarnSpinner",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "YarnSpinnerEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "YarnSpinnerGameData",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
 }

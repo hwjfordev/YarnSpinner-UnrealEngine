@@ -1,0 +1,65 @@
+title: DatabaseFlow
+---
+<<declare $money_before = 0>>
+<<declare $query_money = 0>>
+<<declare $query_items = 0>>
+<<declare $query_affinity = 0>>
+<<declare $query_other_npc = 0>>
+<<declare $query_met = false>>
+<<declare $query_quest = "">>
+<<declare $query_chapter = 0>>
+<<declare $query_equipment = "">>
+<<declare $query_has_item = false>>
+<<declare $query_can_afford = false>>
+<<declare $query_has_record = false>>
+<<declare $missing_result = 0>>
+<<set $money_before = money()>>
+<<money_add 25>>
+<<money_remove 30>>
+<<item_add "potion" 2>>
+<<equip_item "body" "coat">>
+<<npc_affinity_add "npc.mira" 5>>
+<<db_set_bool "npc.mira" "met" true>>
+<<db_set_string "npc.mira" "quest" "active">>
+<<db_add_number "game" "chapter" 1>>
+<<set $query_money = money()>>
+<<set $query_items = item_count("potion")>>
+<<set $query_affinity = npc_affinity("npc.mira")>>
+<<set $query_other_npc = npc_affinity("npc.alan")>>
+<<set $query_met = db_bool("npc.mira", "met")>>
+<<set $query_quest = db_string("npc.mira", "quest")>>
+<<set $query_chapter = db_number("game", "chapter")>>
+<<set $query_equipment = equipped_item("body")>>
+<<set $query_has_item = has_item("potion", 2)>>
+<<set $query_can_afford = can_afford(95)>>
+<<set $query_has_record = db_has_record("npc.alan")>>
+Test complete. #line:checkpoint_database_ok
+===
+title: QueryMissing
+---
+<<set $missing_result = npc_affinity("missing.npc")>>
+<<money_add 10000>>
+This must not run. #line:checkpoint_missing_unreachable
+===
+title: CommandInsufficient
+---
+<<money_remove 10000>>
+<<money_add 10000>>
+This must not run. #line:checkpoint_insufficient_unreachable
+===
+title: CommandFraction
+---
+<<money_add 1.5>>
+<<money_add 10000>>
+This must not run. #line:checkpoint_fraction_unreachable
+===
+title: HoldLine
+---
+Wait for player input. #line:checkpoint_hold
+===
+title: CommandGarbage
+---
+<<money_add "12oops">>
+<<money_add 10000>>
+This must not run. #line:checkpoint_garbage_unreachable
+===
