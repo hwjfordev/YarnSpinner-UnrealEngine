@@ -1,6 +1,24 @@
-環境修正：編譯器需要 .NET 9，但當時電腦只有 .NET 8／10，因此在 .tools 底下的 ysc.runtimeconfig.json，於既有 runtimeOptions 物件內加入：
-"rollForward": "Major"
-保留原有欄位。只有遇到缺少 .NET 9、且要使用已安裝的 .NET 10 執行時，才需要重現這項設定。 若 ysc --help 已能正常執行，可跳過。
+## 設定 Yarn 文字編譯器
+`ysc` 負責把 `.yarnproject` 匯入成 Unreal 資產；。官方安裝說明指定使用 YarnSpinner.Console 3.2.2。
+之前我將它安裝在專案內。要重現這個做法，在 PowerShell 執行：
+
+```
+Set-Location 'C:\[YourProjectLocation]'
+
+dotnet tool install YarnSpinner.Console --tool-path .tools --version 3.2.2
+
+.\.tools\ysc.exe --help
+```
+
+接著在 Unreal 的 `Project Settings → Plugins → Yarn Spinner → Ysc Path` 指向：
+`[C:\YourProjectLocation]\.tools\ysc.exe`
+
+
+## 環境修正
+
+編譯器需要 .NET 9，但當時電腦只有 .NET 8／10，因此在 `.tools` 底下的 `ysc.runtimeconfig.json`，於既有 runtimeOptions 物件內加入：
+`"rollForward": "Major"`
+保留原有欄位。只有遇到缺少 .NET 9、且要使用已安裝的 .NET 10 執行時，才需要重現這項設定。 若 `ysc --help` 已能正常執行，可跳過。
 
 
 
