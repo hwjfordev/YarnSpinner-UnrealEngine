@@ -76,14 +76,14 @@ void RunDatabaseChecks(FReport& R)
             FSectionTestBadData Bad; Bad.Live = Definition;
             const uint64 Before = DB->GetRevision();
             FInstancedStruct Section;
-            R.Check(!DB->TryGetSection(TEXT("StoryKit"), Section)
-                && DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1
-                && DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1,
+            R.Check(!DB->TryGetSection(TEXT("YarnDatabaseTest"), Section)
+                && DB->SetSection(TEXT("YarnDatabaseTest"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1
+                && DB->SetSection(TEXT("YarnDatabaseTest"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1,
                 TEXT("Plugin sections write through the database revision and ignore unchanged values"));
-            R.Check(!DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(FCheckpointTestProgress()))
+            R.Check(!DB->SetSection(TEXT("YarnDatabaseTest"), FInstancedStruct::Make(FCheckpointTestProgress()))
                 && !DB->SetSection(TEXT("Other"), FInstancedStruct::Make(Bad))
                 && !DB->SetSection(NAME_None, FInstancedStruct::Make(Facts)) && !DB->SetSection(TEXT("Empty"), FInstancedStruct())
-                && DB->TryGetSection(TEXT("StoryKit"), Section) && Section.Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1
+                && DB->TryGetSection(TEXT("YarnDatabaseTest"), Section) && Section.Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1
                 && !DB->TryGetSection(TEXT("Other"), Section),
                 TEXT("Sections reject type changes, live objects, invalid IDs and empty structs"));
             R.Check(DB->SetSection(TEXT("Temp"), FInstancedStruct::Make(Facts)) && DB->RemoveSection(TEXT("Temp"))
@@ -133,8 +133,8 @@ void RunDatabaseChecks(FReport& R)
             && Data.CustomGameData.Get<FCheckpointTestProgress>().CompletedQuests.Num() == 2
             && Data.CustomGameData.Get<FCheckpointTestProgress>().Counters.FindRef(TEXT("visits")) == 3,
             TEXT("Custom progress struct strings, arrays and maps survive disk round trip"));
-        R.Check(Data.Sections.Contains(TEXT("StoryKit"))
-            && Data.Sections[TEXT("StoryKit")].Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1,
+        R.Check(Data.Sections.Contains(TEXT("YarnDatabaseTest"))
+            && Data.Sections[TEXT("YarnDatabaseTest")].Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1,
             TEXT("Plugin sections survive disk round trip"));
         R.Check(Data.YarnVariables.Numbers.Contains(TEXT("$db_zero")) && !Data.YarnVariables.Bools[TEXT("$db_false")]
             && Data.YarnVariables.Strings[TEXT("$db_empty")].IsEmpty(), TEXT("Yarn zero, false and empty survive disk save"));

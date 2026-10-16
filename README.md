@@ -337,3 +337,7 @@ The `UYarnVoiceOverPresenter` component plays audio assets matched to dialogue l
 This fork includes an actor-independent runtime database and versioned saves with a Blueprint migration interface in a separate runtime module. NPC DataTables provide defaults; session data stores NPC state, inventory/currency, equipment IDs, custom Blueprint progress structs and Yarn variables. Blueprint projects can use a matching prebuilt plugin without their own C++ module.
 
 See [installation](Docs/PluginSetup.md), [Blueprint tutorial](Docs/DatabaseQuickStart.md), [module/function flowcharts](Docs/SaveSystemArchitecture.md) and [save migration](Docs/SaveMigration.md) and [validation](Docs/SaveMigrationValidation.md). Original licensing and credits above remain unchanged.
+
+### Optional StoryKit integration
+
+The `storykit-integration` branch provides plugin-owned database sections, save guards and a runner-connected hook for the separate [StoryKit / StoryKitYarn plugins](https://github.com/hwjfordev/StoryKit). Yarn Spinner remains usable without either plugin. See [integration validation and setup](Docs/StoryKitIntegrationValidation.md) for the UE 5.8.3 test matrix, deferred-continuation fix and regression tests.

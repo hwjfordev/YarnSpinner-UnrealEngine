@@ -171,6 +171,9 @@ private:
 	/** True while a blocking command is holding the dialogue. */
 	bool bBlockingCommandPending = false;
 
+	/** Invalidates deferred work when a conversation stops or is replaced. */
+	uint64 DialogueGeneration = 0;
+
 	/** Registered yarn functions (function name -> implementation) */
 	TMap<FString, TFunction<FYarnValue(const TArray<FYarnValue>&)>, FDefaultSetAllocator,
 		TYarnCaseSensitiveNameKeyFuncs<TFunction<FYarnValue(const TArray<FYarnValue>&)>>> Functions;

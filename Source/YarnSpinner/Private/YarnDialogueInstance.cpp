@@ -91,6 +91,7 @@ void UYarnDialogueInstance::SetupVirtualMachine()
 
 void UYarnDialogueInstance::ResetForNewProject()
 {
+	++DialogueGeneration;
 	ActiveLinePresenterCount = 0;
 	CurrentLocalizedOptions.Options.Empty();
 	PendingSelectedOptionIndex = -1;
@@ -140,6 +141,7 @@ void UYarnDialogueInstance::StartDialogue(const FString& NodeName)
 		UE_LOG(LogYarnSpinner, Log, TEXT("YarnDialogueRunner: Node '%s' found with %d instructions"), *NodeName, Node->Instructions.Num());
 	}
 
+	++DialogueGeneration;
 	// Each conversation gets a fresh dialogue-level cancellation source.
 	// The previous one may have been cancelled by a previous StopDialogue;
 	// we don't want a brand-new dialogue to start out cancelled. Per-content
@@ -183,6 +185,7 @@ void UYarnDialogueInstance::StartDialogue(const FString& NodeName)
 
 void UYarnDialogueInstance::StopDialogue()
 {
+	++DialogueGeneration;
 	// Clear any pending wait timer so it doesn't fire after dialogue stops
 	if (UWorld* World = GetOwnerWorld())
 	{
@@ -943,12 +946,15 @@ void UYarnDialogueInstance::InvokeCommandFunction(UObject* Target, UFunction* Fu
 
 void UYarnDialogueInstance::ContinueDeferred()
 {
+	// A synchronous handler may have stopped the dialogue before returning.
+	if (!IsDialogueRunning()) return;
+	const uint64 Generation = DialogueGeneration;
 	if (UWorld* World = GetOwnerWorld())
 	{
 		TWeakObjectPtr<UYarnDialogueInstance> WeakThis(this);
-		World->GetTimerManager().SetTimerForNextTick([WeakThis]()
+		World->GetTimerManager().SetTimerForNextTick([WeakThis, Generation]()
 		{
-			if (WeakThis.IsValid() && WeakThis->IsDialogueRunning())
+			if (WeakThis.IsValid() && WeakThis->DialogueGeneration == Generation && WeakThis->IsDialogueRunning())
 			{
 				WeakThis->VirtualMachine.Continue();
 			}

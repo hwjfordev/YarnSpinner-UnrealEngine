@@ -1,0 +1,1017 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "HWJ-AMD-PC",
+			"instance": "42A165C040C8EB62E84CA3900DB92501",
+			"instanceName": "HWJ-AMD-PC-11908",
+			"platform": "WindowsEditor",
+			"oSVersion": "Windows 11 (25H2) [10.0.26200.9457] ",
+			"model": "Default",
+			"gPU": "NVIDIA GeForce RTX 4090",
+			"cPUModel": "AMD Ryzen 7 5800X 8-Core Processor             ",
+			"rAMInGB": 32,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.10.16-15.31.04",
+	"succeeded": 56,
+	"succeededWithWarnings": 4,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.73366904258728027,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "ProjectAssetProvider",
+			"fullTestPath": "YarnSpinner.Assets.ProjectAssetProvider",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0079079009592533112,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NamesAreCaseSensitive",
+			"fullTestPath": "YarnSpinner.Commands.NamesAreCaseSensitive",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.064647398889064789,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnDialogueRunner: No Yarn Project set",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				}
+			],
+			"warnings": 1,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ParseQuotedText",
+			"fullTestPath": "YarnSpinner.Commands.ParseQuotedText",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0083163976669311523,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TokenisationEdges",
+			"fullTestPath": "YarnSpinner.Commands.TokenisationEdges",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082533992826938629,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ImmediateAndZeroDuration",
+			"fullTestPath": "YarnSpinner.Effects.ImmediateAndZeroDuration",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.007712099701166153,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Format",
+			"fullTestPath": "YarnSpinner.Functions.Format",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.024846799671649933,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnDialogueRunner: No Yarn Project set",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				}
+			],
+			"warnings": 1,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TracksContent",
+			"fullTestPath": "YarnSpinner.LineAdvancer.TracksContent",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0087101012468338013,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnLineAdvancer: no dialogue runner set, and none found on this actor",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnLineAdvancer: no dialogue runner set, and none found on this actor",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnLineAdvancer: no dialogue runner set, and none found on this actor",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				},
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: YarnLineAdvancer: no dialogue runner set, and none found on this actor",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.03"
+				}
+			],
+			"warnings": 4,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "BuiltinLineProvider",
+			"fullTestPath": "YarnSpinner.Localisation.BuiltinLineProvider",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0049544982612133026,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CardinalPluralRules",
+			"fullTestPath": "YarnSpinner.Markup.CardinalPluralRules",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0076101981103420258,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CharacterAndSelect",
+			"fullTestPath": "YarnSpinner.Markup.CharacterAndSelect",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.00814790278673172,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CoreParity",
+			"fullTestPath": "YarnSpinner.Markup.CoreParity",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082622990012168884,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "MisnestedTagsRemerge",
+			"fullTestPath": "YarnSpinner.Markup.MisnestedTagsRemerge",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0083081014454364777,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OrdinalPluralRules",
+			"fullTestPath": "YarnSpinner.Markup.OrdinalPluralRules",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082584992051124573,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Validity",
+			"fullTestPath": "YarnSpinner.NodeReference.Validity",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082382000982761383,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "EvaluateExpressionNode",
+			"fullTestPath": "YarnSpinner.SmartVariables.EvaluateExpressionNode",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0083601996302604675,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Commands",
+			"fullTestPath": "YarnSpinner.TestPlans.Commands",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.013244900852441788,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DecimalNumbers",
+			"fullTestPath": "YarnSpinner.TestPlans.DecimalNumbers",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011269502341747284,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Detours",
+			"fullTestPath": "YarnSpinner.TestPlans.Detours",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.009051300585269928,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Detours-MayDetourToThemselves",
+			"fullTestPath": "YarnSpinner.TestPlans.Detours-MayDetourToThemselves",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0081095993518829346,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Enums",
+			"fullTestPath": "YarnSpinner.TestPlans.Enums",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010866202414035797,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Enums-FunctionsAcceptingStringMayAcceptAnyStringEnum",
+			"fullTestPath": "YarnSpinner.TestPlans.Enums-FunctionsAcceptingStringMayAcceptAnyStringEnum",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010716602206230164,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Enums-FunctionsReturningStringMayBeComparedToAnyStringEnum",
+			"fullTestPath": "YarnSpinner.TestPlans.Enums-FunctionsReturningStringMayBeComparedToAnyStringEnum",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010795701295137405,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Escaping",
+			"fullTestPath": "YarnSpinner.TestPlans.Escaping",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010218899697065353,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Expressions",
+			"fullTestPath": "YarnSpinner.TestPlans.Expressions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010953497141599655,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FormatFunctions",
+			"fullTestPath": "YarnSpinner.TestPlans.FormatFunctions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010906703770160675,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Functions",
+			"fullTestPath": "YarnSpinner.TestPlans.Functions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010790999978780746,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "IfStatements",
+			"fullTestPath": "YarnSpinner.TestPlans.IfStatements",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011040400713682175,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Indentation",
+			"fullTestPath": "YarnSpinner.TestPlans.Indentation",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010898198932409286,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Inference-FunctionsAndVarsInheritType",
+			"fullTestPath": "YarnSpinner.TestPlans.Inference-FunctionsAndVarsInheritType",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010821599513292313,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Inference-FunctionsCalledWithConvertibleParameters",
+			"fullTestPath": "YarnSpinner.TestPlans.Inference-FunctionsCalledWithConvertibleParameters",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010856900364160538,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "InlineExpressions",
+			"fullTestPath": "YarnSpinner.TestPlans.InlineExpressions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011139500886201859,
+			"dateTime": "2026.10.16-15.31.03",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Jumps",
+			"fullTestPath": "YarnSpinner.TestPlans.Jumps",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010645098984241486,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LineGroups",
+			"fullTestPath": "YarnSpinner.TestPlans.LineGroups",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011016901582479477,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Lines",
+			"fullTestPath": "YarnSpinner.TestPlans.Lines",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010923799127340317,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NodeGroups",
+			"fullTestPath": "YarnSpinner.TestPlans.NodeGroups",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011167000979185104,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NodeGroupsContentQuerying",
+			"fullTestPath": "YarnSpinner.TestPlans.NodeGroupsContentQuerying",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0115618035197258,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NodeGroupsWithImplicitDeclarations",
+			"fullTestPath": "YarnSpinner.TestPlans.NodeGroupsWithImplicitDeclarations",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0083265975117683411,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NodeGroupVisitTracking",
+			"fullTestPath": "YarnSpinner.TestPlans.NodeGroupVisitTracking",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010567601770162582,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Once",
+			"fullTestPath": "YarnSpinner.TestPlans.Once",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010752100497484207,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ShadowLines",
+			"fullTestPath": "YarnSpinner.TestPlans.ShadowLines",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010789800435304642,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ShortcutOptions",
+			"fullTestPath": "YarnSpinner.TestPlans.ShortcutOptions",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010747600346803665,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SmartVariables",
+			"fullTestPath": "YarnSpinner.TestPlans.SmartVariables",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010719798505306244,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Smileys",
+			"fullTestPath": "YarnSpinner.TestPlans.Smileys",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010979600250720978,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Types",
+			"fullTestPath": "YarnSpinner.TestPlans.Types",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010708998888731003,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VariableStorage",
+			"fullTestPath": "YarnSpinner.TestPlans.VariableStorage",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010893199592828751,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VeryLargeFileOfVariables",
+			"fullTestPath": "YarnSpinner.TestPlans.VeryLargeFileOfVariables",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.096853896975517273,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Warning",
+						"message": "LogYarnSpinner: yarn project importer: variables '$LE2_TEST_Sandbox_QA_BVT_1368_1368State' and '$LE2_TEST_Sandbox_qa_bvt_1368_1368State' differ only by case - Unreal keys variables case-insensitively, so they share one value here and two separate values in the other Yarn Spinner runtimes. Rename one of them if they are meant to be different.",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.16-15.31.04"
+				}
+			],
+			"warnings": 1,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisitCount",
+			"fullTestPath": "YarnSpinner.TestPlans.VisitCount",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010770898312330246,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "Visited",
+			"fullTestPath": "YarnSpinner.TestPlans.Visited",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.011110398918390274,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisitTracking",
+			"fullTestPath": "YarnSpinner.TestPlans.VisitTracking",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.010813701897859573,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NFC",
+			"fullTestPath": "YarnSpinner.Unicode.NFC",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0081606991589069366,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SaveAndLoad",
+			"fullTestPath": "YarnSpinner.VariableStorage.SaveAndLoad",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0084921978414058685,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "CommandSubstitutionsLastOccurrence",
+			"fullTestPath": "YarnSpinner.VM.CommandSubstitutionsLastOccurrence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0073226019740104675,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DetourAndReturn",
+			"fullTestPath": "YarnSpinner.VM.DetourAndReturn",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.008261602371931076,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FunctionArityUnknownSkipsCheck",
+			"fullTestPath": "YarnSpinner.VM.FunctionArityUnknownSkipsCheck",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082408003509044647,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LinesRunInOrder",
+			"fullTestPath": "YarnSpinner.VM.LinesRunInOrder",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0081377997994422913,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NestedContinueDoesNotResume",
+			"fullTestPath": "YarnSpinner.VM.NestedContinueDoesNotResume",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082294009625911713,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "NodeNamesAreCaseSensitive",
+			"fullTestPath": "YarnSpinner.VM.NodeNamesAreCaseSensitive",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082487016916275024,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "OptionsSelectAndFallthrough",
+			"fullTestPath": "YarnSpinner.VM.OptionsSelectAndFallthrough",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.008327096700668335,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StoreAndPushVariables",
+			"fullTestPath": "YarnSpinner.VM.StoreAndPushVariables",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0084004029631614685,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "VisitedTrackingIncrements",
+			"fullTestPath": "YarnSpinner.VM.VisitedTrackingIncrements",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"42A165C040C8EB62E84CA3900DB92501"
+			],
+			"duration": 0.0082843005657196045,
+			"dateTime": "2026.10.16-15.31.04",
+			"entries": [],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}
