@@ -187,10 +187,34 @@ Project Settings → Game → Shared Game Data → Save Data Version 是唯一�
 - 道具：inventory、ItemID。
 - 穿戴：equipment、SlotID。
 - 自訂進度：progress、None。
+- 外掛資料區：sections、SectionID。
 
 整份 New Game / Load：On Database Replaced，UI 重新讀取需要的內容。
 Yarn 變數仍使用 GameVariablesSubsystem.On Variable Changed / On State Replaced。
 不要在刷新 UI 的回呼中啟動另一個存讀檔。
+
+## 8. 外掛資料區（Sections）
+
+`CustomGameData` 屬於專案。其他外掛（例如 StoryKit 任務系統）把自己的值 struct 放在 `Sections`，以穩定 ID 區分：
+
+```text
+Get Game Database → Try Get Section("StoryKit") → 值副本
+Get Game Database → Set Section("StoryKit", Make Instanced Struct(...))
+Get Game Database → Remove Section("StoryKit")
+```
+
+- 與 CustomGameData 相同的值檢查：不能放 live Actor/Object、delegate 或非有限數字。
+- 同一個 Section ID 不可改變 struct 型別；寫入會遞增 revision，因此讀檔期間的寫入同樣會使該次讀檔被拒絕。
+- 一起存檔、一起經過 migration handler（`LoadedDatabase.Sections`）。舊存檔沒有此欄位時讀成空的，不需要升版。
+- **New Game 清空所有 Sections**；Initial State 的 Sections 必須留空。外掛在 On Database Replaced 後自行建立預設。
+
+C++ 外掛要在每個 runner 上註冊自己的 Yarn functions / commands 時，在模組 StartupModule 綁定：
+
+```cpp
+UGameDataBlueprintLibrary::OnSharedRunnerConnected().AddLambda([](UYarnDialogueRunner* Runner) { /* AddFunction / AddCommandHandler */ });
+```
+
+每次 Connect Runner To Shared Variables 成功都會觸發（可能對同一 runner 重複），處理器必須可重複執行。
 
 ## 已移除與仍保留
 

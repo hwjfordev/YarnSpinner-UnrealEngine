@@ -39,6 +39,9 @@ struct YARNSPINNERGAMEDATA_API FGameDatabaseSnapshot
     UPROPERTY(BlueprintReadWrite, SaveGame, Category="Database") FGameVariableSnapshot YarnVariables;
     /** Project-owned Blueprint struct: chapters, quest arrays, calendar, etc. Value data only. */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, SaveGame, Category="Database") FInstancedStruct CustomGameData;
+    /** Plugin-owned value structs keyed by a stable plugin ID (e.g. "StoryKit"). Separate from the project's
+     * CustomGameData. Saved, migrated and validated with the rest of the database; New Game clears all sections. */
+    UPROPERTY(BlueprintReadWrite, SaveGame, Category="Database") TMap<FName, FInstancedStruct> Sections;
 };
 
 /** Author defaults in a Data Asset. The runtime takes a value copy; this asset is never mutated. */

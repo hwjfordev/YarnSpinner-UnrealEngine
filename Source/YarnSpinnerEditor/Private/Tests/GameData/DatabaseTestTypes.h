@@ -11,6 +11,20 @@ struct FCheckpointTestProgress
     UPROPERTY() TMap<FName, int32> Counters;
 };
 
+/** Plugin-section fixtures: a value struct and one that illegally holds a live object. */
+USTRUCT()
+struct FSectionTestData
+{
+    GENERATED_BODY()
+    UPROPERTY() TMap<FName, int32> Facts;
+};
+USTRUCT()
+struct FSectionTestBadData
+{
+    GENERATED_BODY()
+    UPROPERTY() TObjectPtr<UObject> Live;
+};
+
 UCLASS()
 class UGameSaveMigrationTestHandler : public UObject, public IGameSaveMigrationHandler
 {

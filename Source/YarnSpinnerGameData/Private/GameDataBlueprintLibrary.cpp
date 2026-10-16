@@ -46,5 +46,11 @@ bool UGameDataBlueprintLibrary::ConnectRunnerToSharedVariables(UYarnDialogueRunn
     if (Runner->HasBegunPlay()) Runner->SetYarnProject(Runner->YarnProject);
     if (!Storage->DatabaseBridge) Storage->DatabaseBridge = NewObject<UYarnDatabaseBridge>(Storage);
     Storage->DatabaseBridge->Initialize(Runner, GetGameDatabase(Runner));
+    OnSharedRunnerConnected().Broadcast(Runner);
     return true;
+}
+FOnSharedRunnerConnected& UGameDataBlueprintLibrary::OnSharedRunnerConnected()
+{
+    static FOnSharedRunnerConnected Delegate;
+    return Delegate;
 }

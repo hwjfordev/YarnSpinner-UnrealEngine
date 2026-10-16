@@ -122,6 +122,9 @@ void UGameDatabaseSubsystem::Initialize(FSubsystemCollectionBase& Collection)
     // Yarn defaults are registered through GameVariablesSubsystem after this subsystem initializes.
     if (Defaults.YarnVariables.Numbers.Num() || Defaults.YarnVariables.Bools.Num() || Defaults.YarnVariables.Strings.Num())
     { LastError = TEXT("Configure Yarn defaults through Yarn Projects / Gameplay Defaults."); return; }
+    // Sections belong to plugins, which initialize them after OnDatabaseReplaced. New Game always clears them.
+    if (Defaults.Sections.Num())
+    { LastError = TEXT("Initial State Sections must be empty; plugins create their own sections at runtime."); return; }
     if (!ValidateSnapshot(Defaults, LastError)) return;
     State = Defaults;
     bReady = true;
@@ -177,6 +180,12 @@ bool UGameDatabaseSubsystem::ValidateSnapshot(const FGameDatabaseSnapshot& Candi
         Defaults.CustomGameData.GetScriptStruct() != Candidate.CustomGameData.GetScriptStruct())
     { Error = TEXT("Custom game data type differs from the configured default struct."); return false; }
     if (!Database::StructData(Candidate.CustomGameData.GetScriptStruct(), Candidate.CustomGameData.GetMemory(), Error, 0)) return false;
+    for (const auto& Pair : Candidate.Sections)
+    {
+        if (!ValidID(Pair.Key) || !Pair.Value.IsValid())
+        { Error = FString::Printf(TEXT("Section %s must have a valid ID and struct."), *Pair.Key.ToString()); return false; }
+        if (!Database::StructData(Pair.Value.GetScriptStruct(), Pair.Value.GetMemory(), Error, 0)) return false;
+    }
     return UGameVariablesSubsystem::ValidateSnapshot(Candidate.YarnVariables, Error);
 }
 
@@ -326,3 +335,25 @@ bool UGameDatabaseSubsystem::SetCustomGameData(const FInstancedStruct& Data)
     return true;
 }
 
+bool UGameDatabaseSubsystem::TryGetSection(FName ID, FInstancedStruct& Data) const
+{
+    const auto* Found = State.Sections.Find(ID);
+    Data = Found ? *Found : FInstancedStruct(); return Found != nullptr;
+}
+bool UGameDatabaseSubsystem::SetSection(FName ID, const FInstancedStruct& Data)
+{
+    if (!CanWrite()) return false;
+    if (!ValidID(ID) || !Data.IsValid()) { LastError = TEXT("Section needs a valid ID and a struct value."); return false; }
+    const auto* Current = State.Sections.Find(ID);
+    if (Current && Current->GetScriptStruct() != Data.GetScriptStruct())
+    { LastError = FString::Printf(TEXT("Section %s already uses another struct type."), *ID.ToString()); return false; }
+    if (!Database::StructData(Data.GetScriptStruct(), Data.GetMemory(), LastError, 0)) return false;
+    if (!Current || *Current != Data) { State.Sections.Add(ID, Data); Changed(TEXT("sections"), ID); }
+    return true;
+}
+bool UGameDatabaseSubsystem::RemoveSection(FName ID)
+{
+    if (!CanWrite()) return false;
+    if (State.Sections.Remove(ID)) Changed(TEXT("sections"), ID);
+    return true;
+}

@@ -55,6 +55,12 @@ public:
     UFUNCTION(BlueprintPure, Category="Game Data|Progress") FInstancedStruct GetCustomGameData() const { return State.CustomGameData; }
     /** Copies your struct into the database. Re-submit after editing the copy returned by Get. */
     UFUNCTION(BlueprintCallable, Category="Game Data|Progress") bool SetCustomGameData(const FInstancedStruct& Data);
+    /** Plugin data sections. Returns a value copy; edit it and submit with Set Section. */
+    UFUNCTION(BlueprintPure, Category="Game Data|Sections") bool TryGetSection(FName SectionID, FInstancedStruct& Data) const;
+    /** Validated like CustomGameData (values only). An existing section keeps its struct type. */
+    UFUNCTION(BlueprintCallable, Category="Game Data|Sections") bool SetSection(FName SectionID, const FInstancedStruct& Data);
+    UFUNCTION(BlueprintCallable, Category="Game Data|Sections") bool RemoveSection(FName SectionID);
+    /** Section changes are reported as RecordID "sections", Field = SectionID. */
     UPROPERTY(BlueprintAssignable, Category="Game Data|Events") FGameDatabaseChanged OnDataChanged;
     UPROPERTY(BlueprintAssignable, Category="Game Data|Events") FGameDatabaseReplaced OnDatabaseReplaced;
     UPROPERTY(BlueprintReadOnly, Category="Game Data|Status") FString LastError;

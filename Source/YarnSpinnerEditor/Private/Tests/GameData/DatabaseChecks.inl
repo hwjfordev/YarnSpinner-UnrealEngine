@@ -71,6 +71,25 @@ void RunDatabaseChecks(FReport& R)
         Mutable.Counters.Add(TEXT("visits"), 3);
         R.Check(DB->GetCustomGameData().Get<FCheckpointTestProgress>().Chapter == TEXT("Day1")
             && DB->SetCustomGameData(Custom), TEXT("Custom progress structs use explicit value-copy updates"));
+        {
+            FSectionTestData Facts; Facts.Facts.Add(TEXT("World.Door"), 1);
+            FSectionTestBadData Bad; Bad.Live = Definition;
+            const uint64 Before = DB->GetRevision();
+            FInstancedStruct Section;
+            R.Check(!DB->TryGetSection(TEXT("StoryKit"), Section)
+                && DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1
+                && DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(Facts)) && DB->GetRevision() == Before + 1,
+                TEXT("Plugin sections write through the database revision and ignore unchanged values"));
+            R.Check(!DB->SetSection(TEXT("StoryKit"), FInstancedStruct::Make(FCheckpointTestProgress()))
+                && !DB->SetSection(TEXT("Other"), FInstancedStruct::Make(Bad))
+                && !DB->SetSection(NAME_None, FInstancedStruct::Make(Facts)) && !DB->SetSection(TEXT("Empty"), FInstancedStruct())
+                && DB->TryGetSection(TEXT("StoryKit"), Section) && Section.Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1
+                && !DB->TryGetSection(TEXT("Other"), Section),
+                TEXT("Sections reject type changes, live objects, invalid IDs and empty structs"));
+            R.Check(DB->SetSection(TEXT("Temp"), FInstancedStruct::Make(Facts)) && DB->RemoveSection(TEXT("Temp"))
+                && !DB->TryGetSection(TEXT("Temp"), Section) && DB->RemoveSection(TEXT("Temp")),
+                TEXT("Sections can be removed; removing a missing section is a no-op"));
+        }
         F.Variables->SetBool(TEXT("$db_false"), false);
         F.Variables->SetNumber(TEXT("$db_zero"), 0);
         F.Variables->SetString(TEXT("$db_empty"), TEXT(""));
@@ -105,6 +124,9 @@ void RunDatabaseChecks(FReport& R)
             && Data.CustomGameData.Get<FCheckpointTestProgress>().CompletedQuests.Num() == 2
             && Data.CustomGameData.Get<FCheckpointTestProgress>().Counters.FindRef(TEXT("visits")) == 3,
             TEXT("Custom progress struct strings, arrays and maps survive disk round trip"));
+        R.Check(Data.Sections.Contains(TEXT("StoryKit"))
+            && Data.Sections[TEXT("StoryKit")].Get<FSectionTestData>().Facts.FindRef(TEXT("World.Door")) == 1,
+            TEXT("Plugin sections survive disk round trip"));
         R.Check(Data.YarnVariables.Numbers.Contains(TEXT("$db_zero")) && !Data.YarnVariables.Bools[TEXT("$db_false")]
             && Data.YarnVariables.Strings[TEXT("$db_empty")].IsEmpty(), TEXT("Yarn zero, false and empty survive disk save"));
         R.Check(F.Saves->LoadSlot(Slot + TEXT("_missing")) && F.WaitForIO() && !F.Observer->bLastSuccess
@@ -117,6 +139,7 @@ void RunDatabaseChecks(FReport& R)
         R.Check(F.Saves->StartNewGame() && DB->GetMoney() == 100 && !DB->HasRecord(TEXT("runtime.record"))
             && DB->GetCustomGameData().Get<FCheckpointTestProgress>().Chapter == TEXT("Day1")
             && !F.Variables->Contains(TEXT("$db_empty")), TEXT("New Game resets database, custom progress and Yarn session keys"));
+        R.Check(DB->GetSnapshot().Sections.IsEmpty(), TEXT("New Game clears plugin sections"));
         R.Check(F.Saves->DoesSlotExist(Slot), TEXT("New Game does not delete disk saves"));
 
         const FString PluginDir = IPluginManager::Get().FindPlugin(TEXT("YarnSpinner"))->GetBaseDir();
@@ -132,7 +155,14 @@ void RunDatabaseChecks(FReport& R)
         if (F.Project)
         {
             USharedGameDataTestPresenter* Presenter = nullptr;
+            int32 HookCalls = 0;
+            UYarnDialogueRunner* HookedRunner = nullptr;
+            const FDelegateHandle Hook = UGameDataBlueprintLibrary::OnSharedRunnerConnected().AddLambda(
+                [&HookCalls, &HookedRunner](UYarnDialogueRunner* Connected) { ++HookCalls; HookedRunner = Connected; });
             auto* Runner = F.MakeRunner(Presenter, false);
+            UGameDataBlueprintLibrary::OnSharedRunnerConnected().Remove(Hook);
+            R.Check(Runner && HookCalls == 1 && HookedRunner == Runner,
+                TEXT("Connect broadcasts the native runner hook once per successful connection"));
             R.Check(Runner && F.Play(Runner, Presenter, {}, TEXT("DatabaseFlow")),
                 TEXT("Existing Connect node installs database functions/commands in a real Yarn VM"));
             R.Check(F.Number(TEXT("$query_money")) == 95 && F.Number(TEXT("$query_items")) == 2

@@ -13,7 +13,7 @@ Get Game Database → Get Money / Add Money / Try Spend Money
 Get Game Saves → Save Slot / Load Slot / Start New Game
 ```
 
-Yarn variables 與 Records、Inventory、Equipment、CustomGameData 都位於同一個 runtime database snapshot。GameVariablesSubsystem 提供原本的型別 API、宣告預設值、smart-variable 支援與通知。
+Yarn variables 與 Records、Inventory、Equipment、CustomGameData、外掛 Sections 都位於同一個 runtime database snapshot。GameVariablesSubsystem 提供原本的型別 API、宣告預設值、smart-variable 支援與通知。
 
 NPC 與跨角色資料請建立 DataTable rows；金錢用 inventory ItemID；不要同步兩份餘額。全域敘事變數仍可使用 $name。GameInstance Subsystems 自動建立，不需要 Cast BP_GameInstance。
 
