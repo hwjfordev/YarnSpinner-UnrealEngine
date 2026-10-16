@@ -95,6 +95,15 @@ void RunDatabaseChecks(FReport& R)
         F.Variables->SetString(TEXT("$db_empty"), TEXT(""));
         R.Check(DB->GetSnapshot().YarnVariables.Numbers.Contains(TEXT("$db_zero")),
             TEXT("Shared Yarn variables are owned by the same runtime database"));
+        {
+            bool bBlock = true;
+            F.Saves->SetSaveGuard(TEXT("TestGuard"), FGameSaveGuard::CreateLambda([&bBlock](FString& Reason)
+                { Reason = TEXT("busy"); return !bBlock; }));
+            R.Check(!F.Saves->SaveSlot(Slot) && F.Saves->LastError == TEXT("busy") && !F.Saves->bBusy,
+                TEXT("A registered save guard vetoes Save Slot with its reason"));
+            bBlock = false;
+            F.Saves->ClearSaveGuard(TEXT("TestGuard"));
+        }
         R.Check(F.Saves->SaveSlot(Slot) && !F.Saves->SaveSlot(Slot),
             TEXT("Async database save accepts one operation only"));
         DB->AddMoney(1); DB->AddNPCAffinity(TEXT("npc.mira"), 1);

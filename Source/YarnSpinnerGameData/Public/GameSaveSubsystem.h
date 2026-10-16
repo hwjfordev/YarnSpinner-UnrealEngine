@@ -8,6 +8,8 @@ class UGameVariablesSubsystem;
 class UGameProgressSave;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FGameSaveOperationCompleted, const FString&, SlotName, bool, bSuccess, const FString&, Error);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGameNewSessionStarted);
+/** Return false (optionally with a reason) to refuse Save Slot right now. */
+DECLARE_DELEGATE_RetVal_OneParam(bool, FGameSaveGuard, FString& /*Reason*/);
 
 UCLASS()
 class YARNSPINNERGAMEDATA_API UGameSaveSubsystem : public UGameInstanceSubsystem
@@ -29,6 +31,9 @@ public:
     UFUNCTION(BlueprintCallable, Category="Game Data|Save") bool RegisterSaveMigrationHandler(UObject* Handler);
     UFUNCTION(BlueprintCallable, Category="Game Data|Save") bool UnregisterSaveMigrationHandler();
     UFUNCTION(BlueprintPure, Category="Game Data|Save") int32 GetSaveDataVersion() const;
+    /** C++ only: lets another system veto checkpoint saves (e.g. while a cutscene/action chain runs). One guard per owner ID. */
+    void SetSaveGuard(FName OwnerID, FGameSaveGuard Guard);
+    void ClearSaveGuard(FName OwnerID);
     UPROPERTY(BlueprintAssignable, Category="Game Data|Save") FGameSaveOperationCompleted OnSaveCompleted;
     UPROPERTY(BlueprintAssignable, Category="Game Data|Save") FGameSaveOperationCompleted OnLoadCompleted;
     UPROPERTY(BlueprintAssignable, Category="Game Data|Save") FGameNewSessionStarted OnNewGameStarted;
@@ -40,6 +45,7 @@ private:
     UPROPERTY(Transient) TObjectPtr<UGameVariablesSubsystem> Variables;
     UPROPERTY(Transient) TObjectPtr<UGameProgressSave> PendingSave;
     UPROPERTY(Transient) TObjectPtr<UObject> MigrationHandler;
+    TMap<FName, FGameSaveGuard> SaveGuards;
     bool bShuttingDown = false;
     bool ValidateRequest(const FString& SlotName, int32 UserIndex);
     bool CanReplaceState();

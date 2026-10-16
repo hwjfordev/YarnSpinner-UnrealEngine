@@ -216,6 +216,15 @@ UGameDataBlueprintLibrary::OnSharedRunnerConnected().AddLambda([](UYarnDialogueR
 
 每次 Connect Runner To Shared Variables 成功都會觸發（可能對同一 runner 重複），處理器必須可重複執行。
 
+需要在特定時段禁止存檔（例如過場動畫或任務動作執行中）時，C++ 可註冊存檔守衛；Save Slot 會回 false，Last Error 為守衛提供的原因：
+
+```cpp
+Saves->SetSaveGuard(TEXT("StoryKit"), FGameSaveGuard::CreateWeakLambda(Owner, [Owner](FString& Reason) { return Owner->CanSave(Reason); }));
+Saves->ClearSaveGuard(TEXT("StoryKit"));
+```
+
+守衛只影響 Save Slot；Load Slot / Start New Game 仍依原規則（對話中拒絕）。
+
 ## 已移除與仍保留
 
 已移除 PersistentActorComponent、WorldSaveRegistrySubsystem、GameWorldStateSubsystem、GameSaveParticipant、world structs、ApplyLoadedWorld、ImportLegacySnapshot、SaveGameClass hooks，以及固定 GameCheckpoint / StartingCheckpoint / CurrentCheckpoint。

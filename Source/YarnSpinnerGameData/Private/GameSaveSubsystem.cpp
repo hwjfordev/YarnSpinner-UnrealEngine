@@ -16,7 +16,7 @@ void UGameSaveSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 }
 void UGameSaveSubsystem::Deinitialize()
 {
-    bShuttingDown = true; PendingSave = nullptr; MigrationHandler = nullptr;
+    bShuttingDown = true; PendingSave = nullptr; MigrationHandler = nullptr; SaveGuards.Reset();
     Super::Deinitialize();
 }
 bool UGameSaveSubsystem::ValidSlotName(const FString& Slot)
@@ -46,6 +46,11 @@ bool UGameSaveSubsystem::UnregisterSaveMigrationHandler()
     MigrationHandler = nullptr;
     return true;
 }
+void UGameSaveSubsystem::SetSaveGuard(FName OwnerID, FGameSaveGuard Guard)
+{
+    if (Guard.IsBound()) SaveGuards.Add(OwnerID, MoveTemp(Guard)); else SaveGuards.Remove(OwnerID);
+}
+void UGameSaveSubsystem::ClearSaveGuard(FName OwnerID) { SaveGuards.Remove(OwnerID); }
 bool UGameSaveSubsystem::ValidateRequest(const FString& Slot, int32 UserIndex)
 {
     LastError.Reset();
@@ -72,6 +77,15 @@ bool UGameSaveSubsystem::SaveSlot(const FString& Slot, int32 UserIndex)
     if (!ValidateRequest(Slot, UserIndex)) return false;
     if (Variables->HasActiveDialogue())
     { LastError = TEXT("Finish dialogue before saving at a checkpoint."); return false; }
+    for (const auto& Pair : SaveGuards)
+    {
+        FString Reason;
+        if (Pair.Value.IsBound() && !Pair.Value.Execute(Reason))
+        {
+            LastError = Reason.IsEmpty() ? FString::Printf(TEXT("Saving is currently blocked by %s."), *Pair.Key.ToString()) : Reason;
+            return false;
+        }
+    }
     const FGameDatabaseSnapshot Snapshot = Database->GetSnapshot();
     if (!Database->ValidateSnapshot(Snapshot, LastError)
         || !Variables->ValidateRestoreSnapshot(Snapshot.YarnVariables, LastError)) return false;
