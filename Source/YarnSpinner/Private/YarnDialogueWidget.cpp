@@ -19,6 +19,8 @@
 #include "YarnSpinnerModule.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
+#include "Blueprint/WidgetTree.h"
 #include "Components/Button.h"
 #include "Components/Border.h"
 #include "Components/CanvasPanel.h"
@@ -385,7 +387,38 @@ void UYarnDialogueWidget::ShowOptions(const TArray<FYarnOption>& Options)
 	}
 	else if (OptionsContainer)
 	{
-		// Use UMG widgets - Blueprint will handle this
+		OptionsContainer->ClearChildren();
+		OptionButtonHandlers.Reset();
+
+		for (int32 i = 0; i < Options.Num(); i++)
+		{
+			const FYarnOption& Option = Options[i];
+
+			UButton* Button = WidgetTree->ConstructWidget<UButton>(UButton::StaticClass());
+			Button->SetIsEnabled(Option.bIsAvailable);
+			Button->SetBackgroundColor(Option.bIsAvailable
+				? FLinearColor(0.2f, 0.4f, 0.7f, 1.0f)
+				: FLinearColor(0.3f, 0.3f, 0.3f, 1.0f));
+
+			UTextBlock* Label = WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass());
+			Label->SetText(FText::FromString(FString::Printf(TEXT("%d. %s"), i + 1, *Option.Line.Text.ToString())));
+			Label->SetFont(FCoreStyle::GetDefaultFontStyle("Regular", DialogueFontSize));
+			Label->SetColorAndOpacity(FSlateColor(Option.bIsAvailable ? FLinearColor::White : FLinearColor(0.6f, 0.6f, 0.6f, 1.0f)));
+			Button->AddChild(Label);
+
+			UYarnDialogueOptionButtonHandler* Handler = NewObject<UYarnDialogueOptionButtonHandler>(this);
+			Handler->Owner = this;
+			Handler->OptionIndex = i;
+			Button->OnClicked.AddDynamic(Handler, &UYarnDialogueOptionButtonHandler::HandleClicked);
+			OptionButtonHandlers.Add(Handler);
+
+			if (UVerticalBoxSlot* ButtonSlot = OptionsContainer->AddChildToVerticalBox(Button))
+			{
+				ButtonSlot->SetPadding(FMargin(0, 6));
+				ButtonSlot->SetHorizontalAlignment(HAlign_Fill);
+			}
+		}
+
 		OptionsContainer->SetVisibility(ESlateVisibility::Visible);
 	}
 
@@ -405,6 +438,8 @@ void UYarnDialogueWidget::HideOptions()
 	else if (OptionsContainer)
 	{
 		OptionsContainer->SetVisibility(ESlateVisibility::Collapsed);
+		OptionsContainer->ClearChildren();
+		OptionButtonHandlers.Reset();
 	}
 
 	// Return keyboard focus to the game viewport so player bindings work
@@ -555,5 +590,13 @@ void UYarnDialogueWidget::SelectOptionByNumber(int32 Index)
 		{
 			OnOptionClicked(Index);
 		}
+	}
+}
+
+void UYarnDialogueOptionButtonHandler::HandleClicked()
+{
+	if (UYarnDialogueWidget* Widget = Owner.Get())
+	{
+		Widget->SelectOptionByNumber(OptionIndex);
 	}
 }

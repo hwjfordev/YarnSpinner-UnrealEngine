@@ -34,6 +34,23 @@ class SBorder;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnYarnDialogueContinue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnYarnOptionChosen, int32, OptionIndex);
 
+class UYarnDialogueWidget;
+
+UCLASS()
+class UYarnDialogueOptionButtonHandler : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY()
+	TWeakObjectPtr<UYarnDialogueWidget> Owner;
+
+	int32 OptionIndex = INDEX_NONE;
+
+	UFUNCTION()
+	void HandleClicked();
+};
+
  /**
  * A ready-to-use dialogue widget for displaying Yarn Spinner dialogue.
  * This widget provides a simple but functional dialogue UI with:
@@ -189,6 +206,11 @@ private:
 	bool bIsTypewriting;
 	bool bUsingSlateUI;
 	TArray<FYarnOption> CurrentOptions;
+
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UYarnDialogueOptionButtonHandler>> OptionButtonHandlers;
+
+	friend class UYarnDialogueOptionButtonHandler;
 
 	/** Update the displayed text during typewriter effect */
 	void UpdateTypewriterText();
