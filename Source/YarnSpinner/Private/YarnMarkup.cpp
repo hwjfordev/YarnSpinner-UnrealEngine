@@ -210,6 +210,8 @@ FYarnMarkupReplacementResult UYarnStyleMarkupProcessor::ProcessMarkup_Implementa
 // Markup Parser
 // ============================================================================
 
+namespace YarnMarkupNames
+{
 // Maximum nesting depth for markup tags
 static constexpr int32 MaxMarkupNestingDepth = 50;
 
@@ -222,6 +224,7 @@ static const FString TrimWhitespaceProperty = TEXT("trimwhitespace");
 static const FString SelectAttribute = TEXT("select");
 static const FString PluralAttribute = TEXT("plural");
 static const FString OrdinalAttribute = TEXT("ordinal");
+}
 
 // Internal struct to track open markup tags during parsing
 struct FMarkupOpenTag
@@ -417,7 +420,7 @@ static bool ProcessBuiltInReplacement(
 
 	FString ValueStr = ValueProp->ToString();
 
-	if (MarkerName.Equals(SelectAttribute, ESearchCase::CaseSensitive))
+	if (MarkerName.Equals(YarnMarkupNames::SelectAttribute, ESearchCase::CaseSensitive))
 	{
 		// [select value=x 1=one 2=two/] - look up property matching the value
 		const FYarnMarkupValue* Replacement = Properties.Find(ValueStr);
@@ -442,8 +445,8 @@ static bool ProcessBuiltInReplacement(
 		return true;
 	}
 
-	if (MarkerName.Equals(PluralAttribute, ESearchCase::CaseSensitive) ||
-		MarkerName.Equals(OrdinalAttribute, ESearchCase::CaseSensitive))
+	if (MarkerName.Equals(YarnMarkupNames::PluralAttribute, ESearchCase::CaseSensitive) ||
+		MarkerName.Equals(YarnMarkupNames::OrdinalAttribute, ESearchCase::CaseSensitive))
 	{
 		double NumericValue = FCString::Atod(*ValueStr);
 
@@ -454,7 +457,7 @@ static bool ProcessBuiltInReplacement(
 		}
 
 		const ETextPluralType PluralType =
-			MarkerName.Equals(PluralAttribute, ESearchCase::CaseSensitive)
+			MarkerName.Equals(YarnMarkupNames::PluralAttribute, ESearchCase::CaseSensitive)
 				? ETextPluralType::Cardinal
 				: ETextPluralType::Ordinal;
 
@@ -889,7 +892,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 			}
 
 			// ---- Nomarkup mode ----
-			if (TagName.Equals(NoMarkupAttribute, ESearchCase::CaseSensitive) && !bSelfClosing)
+			if (TagName.Equals(YarnMarkupNames::NoMarkupAttribute, ESearchCase::CaseSensitive) && !bSelfClosing)
 			{
 				// Find [/nomarkup] closing tag
 				FString CloseTag = TEXT("[/nomarkup]");
@@ -904,7 +907,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 
 					// Add nomarkup as an attribute covering the literal text
 					FYarnMarkupAttribute Attr;
-					Attr.Name = NoMarkupAttribute;
+					Attr.Name = YarnMarkupNames::NoMarkupAttribute;
 					Attr.Position = StartPos;
 					Attr.SourcePosition = TagSourcePosition;
 					Attr.Length = LiteralText.Len();
@@ -920,7 +923,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 					PlainText += LiteralText;
 
 					FYarnMarkupAttribute Attr;
-					Attr.Name = NoMarkupAttribute;
+					Attr.Name = YarnMarkupNames::NoMarkupAttribute;
 					Attr.Position = StartPos;
 					Attr.SourcePosition = TagSourcePosition;
 					Attr.Length = LiteralText.Len();
@@ -934,9 +937,9 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 
 			// ---- Built-in replacement markers (select/plural/ordinal) ----
 			if (bSelfClosing && (
-				TagName.Equals(SelectAttribute, ESearchCase::CaseSensitive) ||
-				TagName.Equals(PluralAttribute, ESearchCase::CaseSensitive) ||
-				TagName.Equals(OrdinalAttribute, ESearchCase::CaseSensitive)))
+				TagName.Equals(YarnMarkupNames::SelectAttribute, ESearchCase::CaseSensitive) ||
+				TagName.Equals(YarnMarkupNames::PluralAttribute, ESearchCase::CaseSensitive) ||
+				TagName.Equals(YarnMarkupNames::OrdinalAttribute, ESearchCase::CaseSensitive)))
 			{
 				FString ReplacementText;
 				if (ProcessBuiltInReplacement(TagName, Properties, LocaleCode, ReplacementText))
@@ -970,7 +973,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 
 				// Self-closing tags implicitly have trimwhitespace=true
 				// unless explicitly set to false
-				const FYarnMarkupValue* TrimProp = Properties.Find(TrimWhitespaceProperty);
+				const FYarnMarkupValue* TrimProp = Properties.Find(YarnMarkupNames::TrimWhitespaceProperty);
 				if (TrimProp && TrimProp->ToString().Equals(TEXT("false"), ESearchCase::IgnoreCase))
 				{
 					bTrimNextWhitespace = false;
@@ -983,9 +986,9 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 			else
 			{
 				// Check nesting depth
-				if (OpenTags.Num() >= MaxMarkupNestingDepth)
+				if (OpenTags.Num() >= YarnMarkupNames::MaxMarkupNestingDepth)
 				{
-					UE_LOG(LogYarnSpinner, Warning, TEXT("Markup nesting depth exceeded maximum of %d - ignoring tag [%s]"), MaxMarkupNestingDepth, *TagName);
+					UE_LOG(LogYarnSpinner, Warning, TEXT("Markup nesting depth exceeded maximum of %d - ignoring tag [%s]"), YarnMarkupNames::MaxMarkupNestingDepth, *TagName);
 					i = TagEnd + 1;
 					continue;
 				}
@@ -1178,7 +1181,7 @@ FYarnMarkupParseResult UYarnMarkupLibrary::ParseMarkupFull(const FString& Text, 
 	Result.TextWithoutCharacterName = PlainText;
 	for (const FYarnMarkupAttribute& Attr : Result.Attributes)
 	{
-		if (Attr.Name.Equals(CharacterAttribute, ESearchCase::CaseSensitive))
+		if (Attr.Name.Equals(YarnMarkupNames::CharacterAttribute, ESearchCase::CaseSensitive))
 		{
 			Result.CharacterName = Attr.GetProperty(TEXT("name"));
 			if (Attr.Length > 0)
