@@ -285,6 +285,9 @@ private:
 	/** Re-entrancy guard - true when Continue() is executing */
 	bool bIsContinuing = false;
 
+	/** Counts Stop() calls, so Continue() can tell a handler stopped the dialogue it was running. */
+	uint32 StopCount = 0;
+
 	/** Set the execution state (auto-resets state when set to Stopped) */
 	void SetExecutionState(EYarnExecutionState NewState);
 

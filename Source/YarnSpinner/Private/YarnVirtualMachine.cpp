@@ -207,7 +207,19 @@ bool FYarnVirtualMachine::Continue()
 		// Log level is heavy enough to hitch a frame on dialogue start.
 		UE_LOG(LogYarnSpinner, Verbose, TEXT("Yarn VM: [%d] Executing instruction type %d"), InstructionPointer, static_cast<int32>(Instruction.Type));
 
+		const uint32 StopCountBeforeInstruction = StopCount;
 		RunInstruction(Instruction);
+
+		// A handler stopped this dialogue. It may also have started another one, which
+		// has to begin at its own first instruction rather than be advanced past it.
+		if (StopCount != StopCountBeforeInstruction)
+		{
+			if (CurrentNode)
+			{
+				SetExecutionState(EYarnExecutionState::Running);
+			}
+			continue;
+		}
 
 		// Always increment IP after each instruction.
 		// Jump instructions set IP to (destination - 1) anticipating this increment.
@@ -233,12 +245,16 @@ bool FYarnVirtualMachine::Continue()
 	}
 
 	bIsContinuing = false;
+
+
 	UE_LOG(LogYarnSpinner, Verbose, TEXT("Yarn VM: Continue() finished, state=%d"), static_cast<int32>(ExecutionState));
 	return true;
 }
 
 void FYarnVirtualMachine::Stop()
 {
+	++StopCount;
+
 	if (ExecutionState == EYarnExecutionState::Stopped)
 	{
 		CurrentNode = nullptr;

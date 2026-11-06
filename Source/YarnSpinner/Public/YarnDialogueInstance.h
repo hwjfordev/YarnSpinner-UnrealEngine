@@ -174,6 +174,9 @@ private:
 	/** True while a blocking command is holding the dialogue. */
 	bool bBlockingCommandPending = false;
 
+	/** Changes whenever a dialogue stops or starts, so deferred work can tell it is out of date. */
+	uint64 DialogueGeneration = 0;
+
 	bool bDispatchingReflectedCommand = false;
 
 	bool bReflectedCommandCompletedEarly = false;
@@ -202,6 +205,9 @@ private:
 	void InvokeCommandFunction(UObject* Target, UFunction* Function, const TArray<FString>& Args, bool& bOutRequestedBlocking);
 
 	void ContinueDeferred();
+
+	/** Does nothing if the dialogue has changed since ExpectedGeneration was read. */
+	void ContinueDeferred(uint64 ExpectedGeneration);
 
 	void WarnIfReservedCommandName(const FString& CommandName) const;
 

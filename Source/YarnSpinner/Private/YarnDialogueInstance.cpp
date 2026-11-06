@@ -91,6 +91,7 @@ void UYarnDialogueInstance::SetupVirtualMachine()
 
 void UYarnDialogueInstance::ResetForNewProject()
 {
+	++DialogueGeneration;
 	ActiveLinePresenterCount = 0;
 	CurrentLocalizedOptions.Options.Empty();
 	PendingSelectedOptionIndex = -1;
@@ -140,6 +141,8 @@ void UYarnDialogueInstance::StartDialogue(const FString& NodeName)
 		UE_LOG(LogYarnSpinner, Log, TEXT("YarnDialogueRunner: Node '%s' found with %d instructions"), *NodeName, Node->Instructions.Num());
 	}
 
+	++DialogueGeneration;
+
 	// Each conversation gets a fresh dialogue-level cancellation source.
 	// The previous one may have been cancelled by a previous StopDialogue;
 	// we don't want a brand-new dialogue to start out cancelled. Per-content
@@ -183,6 +186,8 @@ void UYarnDialogueInstance::StartDialogue(const FString& NodeName)
 
 void UYarnDialogueInstance::StopDialogue()
 {
+	++DialogueGeneration;
+
 	// Clear any pending wait timer so it doesn't fire after dialogue stops
 	if (UWorld* World = GetOwnerWorld())
 	{
@@ -580,6 +585,9 @@ void UYarnDialogueInstance::HandleCommand(const FYarnCommand& Command)
 
 	UYarnDialogueRunner* RunnerOwner = Owner.Get();
 
+	// Read before any handler runs: a handler may stop or replace this dialogue.
+	const uint64 CommandGeneration = DialogueGeneration;
+
 	if (RunnerOwner->bVerboseLogging)
 	{
 		UE_LOG(LogYarnSpinner, Log, TEXT("YarnDialogueRunner: Command '%s'"), *Command.CommandText);
@@ -647,7 +655,7 @@ void UYarnDialogueInstance::HandleCommand(const FYarnCommand& Command)
 			return;
 		}
 
-		ContinueDeferred();
+		ContinueDeferred(CommandGeneration);
 		return;
 	}
 
@@ -668,7 +676,7 @@ void UYarnDialogueInstance::HandleCommand(const FYarnCommand& Command)
 			return;
 		}
 
-		ContinueDeferred();
+		ContinueDeferred(CommandGeneration);
 		return;
 	}
 
@@ -679,7 +687,7 @@ void UYarnDialogueInstance::HandleCommand(const FYarnCommand& Command)
 
 	if (RunnerOwner->bContinueOnUnhandledCommand)
 	{
-		ContinueDeferred();
+		ContinueDeferred(CommandGeneration);
 	}
 }
 
@@ -950,12 +958,22 @@ void UYarnDialogueInstance::InvokeCommandFunction(UObject* Target, UFunction* Fu
 
 void UYarnDialogueInstance::ContinueDeferred()
 {
+	ContinueDeferred(DialogueGeneration);
+}
+
+void UYarnDialogueInstance::ContinueDeferred(uint64 ExpectedGeneration)
+{
+	if (DialogueGeneration != ExpectedGeneration)
+	{
+		return;
+	}
+
 	if (UWorld* World = GetOwnerWorld())
 	{
 		TWeakObjectPtr<UYarnDialogueInstance> WeakThis(this);
-		World->GetTimerManager().SetTimerForNextTick([WeakThis]()
+		World->GetTimerManager().SetTimerForNextTick([WeakThis, ExpectedGeneration]()
 		{
-			if (WeakThis.IsValid() && WeakThis->IsDialogueRunning())
+			if (WeakThis.IsValid() && WeakThis->DialogueGeneration == ExpectedGeneration && WeakThis->IsDialogueRunning())
 			{
 				WeakThis->VirtualMachine.Continue();
 			}
