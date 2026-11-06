@@ -124,7 +124,6 @@ TSharedRef<SWidget> UYarnDialogueWidget::RebuildWidget()
 		[
 			SNew(SBox)
 			.MinDesiredHeight(150.0f)
-			.MaxDesiredHeight(300.0f)
 			[
 				SlateDialogueBox.ToSharedRef()
 			]
