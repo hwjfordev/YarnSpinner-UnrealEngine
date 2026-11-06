@@ -246,6 +246,11 @@ bool FYarnVirtualMachine::Continue()
 
 	bIsContinuing = false;
 
+	// A halted VM never reaches the end of its node, so nothing else would finish this dialogue.
+	if (ExecutionState == EYarnExecutionState::Error)
+	{
+		Stop();
+	}
 
 	UE_LOG(LogYarnSpinner, Verbose, TEXT("Yarn VM: Continue() finished, state=%d"), static_cast<int32>(ExecutionState));
 	return true;
